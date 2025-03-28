@@ -20,13 +20,9 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%----------------------------------------------------------------------------------------
-%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
-%----------------------------------------------------------------------------------------
-
 \documentclass[
 	a4paper, % Page size
-	fontsize=10pt, % Base font size
+	fontsize=9pt, % Base font size
 	twoside=true, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
 	%open=any, % If twoside=true, uncomment this to force new chapters to start on any page, not only on right (odd) pages
 	%chapterentrydots=true, % Uncomment to output dots from the chapter name to the page number in the table of contents
@@ -57,6 +53,7 @@
 
 \addbibresource{EV.bib} % Bibliography file
 \addbibresource{ev-old.bib} % Bibliography file
+\addbibresource{Matsim.bib} % Bibliography file
 
 % Load mathematical packages for theorems and related environments
 \usepackage[framed=true]{kaotheorems}
@@ -180,30 +177,16 @@
 
 \mainmatter % Denotes the start of the main document content, resets page numbering and uses arabic numbers
 \setchapterstyle{kao} % Choose the default chapter heading style
-
-% \input{chapters/old/introduction.tex}
-
-
-
-\input{chapters/thesis-vibes.tex}
-
-% \input{chapters/old/options.tex}
-% \input{chapters/old/textnotes.tex}
-% \input{chapters/old/figsntabs.tex}
-% \input{chapters/old/references.tex}
-
-% \input{chapters/old/layout.tex}
-% \input{chapters/old/mathematics.tex}
+\input{chapters/01_introduction.tex}
+\input{chapters/02_electromobility.tex}
+\input{chapters/03_related-research.tex}
+\input{chapters/04_data.tex}
+\input{chapters/05_research.tex}
+\input{chapters/06_results.tex}
+\input{chapters/07_conclusion.tex}
 
 \appendix % From here onwards, chapters are numbered with letters, as is the appendix convention
 
-% \pagelayout{wide} % No margins
-% \addpart{Appendix}
-% \pagelayout{margin} % Restore margins
-
-% \input{chapters/old/appendix.tex}
-
-%----------------------------------------------------------------------------------------
 
 \backmatter % Denotes the end of the main document content
 \setchapterstyle{plain} % Output plain chapters from this point onwards

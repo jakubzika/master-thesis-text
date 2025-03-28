@@ -81,6 +81,7 @@
     <requires type="editable">
       <file>EV.bib</file>
       <file>ev-old.bib</file>
+      <file>Matsim.bib</file>
     </requires>
   </external>
 </requests>

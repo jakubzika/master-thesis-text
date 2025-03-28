@@ -1,0 +1,71 @@
+\setchapterstyle{kao}
+\setchapterpreamble[u]{\margintoc}
+\chapter{Related research}
+
+This section mentions relevant literature that focuses either on the very same issue. Or topics close to predicting EV charger demand. There are not that many papers focusing on our specific issue however there is a lot of knowledge ihdden inside of them. The papers analyzed in this chapter provide insight into how similar issues were tackled. And on what does the research focus on.
+
+
+First, from an outside perspective. Issues and topic of the papers will be explored. What outcome were they focused on. And then an inside look, into what research approaches they took and what methods were used.
+
+Because this is spatial data science. Most of the papers are very practical in a sense that they work with real datasets. And each country and even city has different data gathering culture and data availabilty. The research is tightly connected to what data is available. No relvant paper for our issue was found focusing on Prague.
+
+\section{Issue addressed}
+
+\begin{itemize}
+    \item EV charger demand prediction
+    \item EV charger use anaylsis
+    \item Charging infrastructure planning and optimization
+    \item Digital twin
+\end{itemize}
+
+\section{Research approaches}
+
+Starting from simple statistics. Then menitoning agent simulations. And end with ML.
+
+Research applies itself to all sorts of EV stuff. Starting from understanding coverage of existing EV chargers.
+
+\subsection{Understanding EV Charger Use by Data}
+
+\todo{bad quality text}
+
+To understand why certain chargers are being utilized the way they are. Research utilizes traditional and bayesian statistics. As the person that plans ev chargers it is good to have insight into what influences charging demand. That is, why a certain charger is utilized. And what factors contribute to it. So far, we dont care about expansion of the infrastrcture. But could provide insights that allow to place new chargers more strategically. \sidecite{hechtGlobalElectricVehicle2024} gathered Points of Interest near every charger of interest (more explanation in data chapter) from Open Street maps. And extracted features like shops, restaurants, public transport offices et cetera. And aggregated them by count by category. Then for each charger computed its utilization. Which is its average daily power consumption. Then used linear regression to test which of the category of PoIS contributed to the consumption. The study had some statisficaly significant results. They also trained neural network model for capturing non linear relationships. This allowed to point at any place on map with available. However it does not work with other chargers in the area and does take into account charger density.
+
+\sidecite{dongElectricVehicleCharging2019} uses log-Gaussian Cox process. Which is a statistical model that can handle dependence between points on a map (EV chargers)
+\todo{i think}.
+
+\subsection{Simulating EV Charger Use}
+
+\textit{simulations
+    starting from agent simulations (with digital twins), which are not that data-validated. Moving into simmulating smaller parts but more data based.
+}
+
+\sidecite{bradyModellingChargingProfiles2016}
+\sidecite{ul-haqProbabilisticModelingElectric2018}
+\sidecite{zhangUrbanChargingLoad2024}
+\sidecite{zhangChargingDemandPrediction2023}
+\sidecite{powellScalableProbabilisticEstimates2022}
+
+\sidecite{Using ML for prediction}
+
+\textit{ML for predictions, not explainable. Just learning on data}
+
+\section{Infrastructure Planning}
+
+\textit{Charger placement, optimization problem how to cover certain areas. ILP and others used}
+
+
+\section{Czechia and Prague Relevant Research}
+
+\textit{No research paper has been found with theme of EVs and Czechia/Prague. So only relevant stuff is gonna be mentioned}
+
+
+\sidecite{pekarekModelChargingService2017}
+\sidecite{elomiyaAdvancedSpatialDecision2024}
+\sidecite{uglickichPoissonbasedFrameworkPredicting2025}
+
+
+
+\section{Discussion}
+
+\textit{Mention how the relevant research is helpful for us. Also how noone has studied Prague and that it has different data landscape. And so we have to do a new approach.}
+
