@@ -9,12 +9,32 @@ First, from an outside perspective. Issues and topic of the papers will be explo
 
 Because this is spatial data science. Most of the papers are very practical in a sense that they work with real datasets. And each country and even city has different data gathering culture and data availabilty. The research is tightly connected to what data is available. No relvant paper for our issue was found focusing on Prague.
 
+\section{A word on models and simulations}
+
+Model is concerned with representing a system of interest. Purpose of it is so it matches its real system in behaviour and we can do experiments with the model which would not be viable to do so in the real world. \sidenote{For example pushing model car off a ramp lets us know if the car can fly over a cliff or. }. It is good to know for what the model cannot be utilized and what is beyond its scope.
+
+Simulation is use of model to get answer to questions regarding real world.
+
+\section{A Word on Models and Simulations}
+
+Models serve as abstract representations of real-world systems, designed to capture essential behaviors while deliberately simplifying complex realities. The fundamental purpose of modeling is to create a system that mimics its real-world counterpart with sufficient fidelity that we can conduct experiments which would be impractical, costly, dangerous, or impossible to perform in actual environments. In the context of EV charging infrastructure, models allow us to explore scenarios of varying adoption rates or policy changes without waiting years for real-world data.
+
+Mathematical models, such as the charging profile model developed in this project, express system relationships through equations and parameters. These differ from physical models (like scale replicas), computational models (purely algorithmic representations), and conceptual models (abstract frameworks). The choice of modeling approach depends on the questions being asked and the available data. For EV charging behavior, a mathematical model implemented through neural networks provides the flexibility to capture complex temporal patterns while maintaining computational efficiency.
+
+Model development follows a rigorous process beginning with conceptualization, where we define the problem scope and establish requirements. This leads to design decisions about model structure and parameterization, followed by implementation in appropriate frameworks. Crucially, validation against historical data confirms the model's fidelity to real-world behavior, while verification ensures correct implementation. The charging profile model presented here underwent extensive validation using historical charging session data, with careful attention to both overall power consumption and temporal distribution patterns.
+
+Simulation represents the execution of models over time, revealing dynamic behaviors that might not be obvious from the static model structure. While models represent what a system is, simulations show what a system does under varying conditions. Through simulation, we gain insights into how EV charging infrastructure might respond to increased adoption rates, policy changes, or integration with renewable energy sources. These insights inform infrastructure planning decisions that have significant financial and environmental implications.
+
+All models incorporate assumptions and simplifications that limit their applicability. The charging profile model presented here assumes certain patterns of human behavior and vehicle capabilities that may evolve over time. Understanding these limitations is essential for responsible model application. Models should never be treated as perfect representations of reality, but rather as tools that provide valuable insights when used appropriately. The most valuable models are those whose limitations are well understood and explicitly acknowledged.
+
+The relationship between model accuracy and complexity presents important tradeoffs. More complex models may capture additional nuances but become less interpretable and more computationally demanding. The charging profile model developed in this research strikes a balance—incorporating sufficient complexity to capture meaningful temporal patterns while remaining tractable for real-time applications and infrastructure planning.
+
 \section{Issue addressed}
 
 \begin{itemize}
     \item EV charger demand prediction
     \item EV charger use anaylsis
-    \item Charging infrastructure planning and optimization
+    \item Charging infrastructuxre planning and optimization
     \item Digital twin
 \end{itemize}
 
@@ -28,16 +48,25 @@ Research applies itself to all sorts of EV stuff. Starting from understanding co
 
 \todo{bad quality text}
 
-To understand why certain chargers are being utilized the way they are. Research utilizes traditional and bayesian statistics. As the person that plans ev chargers it is good to have insight into what influences charging demand. That is, why a certain charger is utilized. And what factors contribute to it. So far, we dont care about expansion of the infrastrcture. But could provide insights that allow to place new chargers more strategically. \sidecite{hechtGlobalElectricVehicle2024} gathered Points of Interest near every charger of interest (more explanation in data chapter) from Open Street maps. And extracted features like shops, restaurants, public transport offices et cetera. And aggregated them by count by category. Then for each charger computed its utilization. Which is its average daily power consumption. Then used linear regression to test which of the category of PoIS contributed to the consumption. The study had some statisficaly significant results. They also trained neural network model for capturing non linear relationships. This allowed to point at any place on map with available. However it does not work with other chargers in the area and does take into account charger density.
+To understand why certain chargers are being utilized the way they are. Research utilizes traditional and Bayesian statistics. As the person that plans \acrfull{CP} it is good to have insight into what influences charging demand. That is, why a certain charger is utilized. And what factors contribute to it. So far, we dont care about expansion of the infrastrcture. But could provide insights that allow to place new chargers more strategically.
 
-\sidecite{dongElectricVehicleCharging2019} uses log-Gaussian Cox process. Which is a statistical model that can handle dependence between points on a map (EV chargers)
-\todo{i think}.
+\sidecite{hechtGlobalElectricVehicle2024} gathered counts of types of \acrfull{POI}\sidenote{types like shops, sport areas, schools, offices} near every charger of interest \sidenote{Search radius of 2000m around each charger with linear decrease in importance in relation to distance} from Open Street maps. Then for each charger computed its utilization. Which is its average daily power consumption. Then used linear regression to test which of the category of \acrfull{POI} contributed to the consumption.
+The study had some statisficaly significant results. They also trained neural network model for capturing non linear relationships. User can use the model to select any point where a \acrfull{CP} might be placed and see its estimated utilization and evaluate worthiness of placement. However it does not work with other chargers in the area and does take into account charger density. The paper has identified that certain categories of \acrfull{POI}\sidenote{\acrshort{POI} data obtained from OpenStreetMaps} are correlated with charger demand.
+
+\sidecite{dongElectricVehicleCharging2019} uses log-Gaussian Cox process. Which is a statistical model that can handle dependence between points on a map (EV chargers). It has identified that workplace population and traffic flow are positively related to demand of\acrfull{CP} while commerce is in a negative relation. \sidenote{<workplace population, traffic flow, commerce description here>}.
+
 
 \subsection{Simulating EV Charger Use}
 
 \textit{simulations
     starting from agent simulations (with digital twins), which are not that data-validated. Moving into simmulating smaller parts but more data based.
 }
+
+Another area of research concerns simulation. Those differ with baking in some knowledge about the problem domain.
+The approach taken is have some entry data.
+Common technique is either to create the simmulation and try to make its outputs match real available data. The internals of such models try to mimmic real world phenomena. This requires understanding of the problem enough that it can be replicated in a digital environment. This approach comes with some computation cost.\sidenote{Traffic models might simmulate every person in city and also simulate interaction between driver agents to correctly estimate road congestion.} The benefit of this is that when the simmulation is callibrated it can be well utilized. Change some parameters inside and see its effect on the results which can with certain degree of confidence taken seriously.
+
+Agent simulations
 
 \sidecite{bradyModellingChargingProfiles2016}
 \sidecite{ul-haqProbabilisticModelingElectric2018}
@@ -63,6 +92,11 @@ To understand why certain chargers are being utilized the way they are. Research
 \sidecite{elomiyaAdvancedSpatialDecision2024}
 \sidecite{uglickichPoissonbasedFrameworkPredicting2025}
 
+\section{Data sources and transformations}
+estimate population
+
+Predicts density of each building per $100m^2$ living area. With $R^2 = 94\%$.
+\sidecite{shangEstimatingBuildingscalePopulation2021}
 
 
 \section{Discussion}
