@@ -3,24 +3,35 @@
 \chapter{Research and implementation}
 \label{ch:problem}
 
-\begin{figure*}[hb]
-    \includegraphics[width=1.5\textwidth]{diagram}
-    \caption[Problem modelling overview]{Chapter content overview. }
-\end{figure*}
+\begin{figure}[hb]
+    \includegraphics[width=1\textwidth]{diagram-detail}
+    \caption[Problem modelling overview]{Problem approach overview}
+\end{figure}
 
-The issue introduced in \ref{ch:problem}
+In this chapter, problem will be formulated together with model development and training. As a soluton to problem introduced in \ref{ch:intro}. That is, be able to predict potential demand for a new \acrfull{CP} placed anywhere in the city of Prague. As a solution a latent profile nerual network will be discussed which should be able to predict charging demand while also offer interpretability to its results.
 
+\section{Problem statement}
 
-\section{Methodology}
+\begin{marginfigure}
+    \includegraphics{diagram}
+    \caption[Problem modelling overview]{Chapter content overview.}
+\end{marginfigure}
 
-Given existing sessions data and data landscape from \autoref{ch:data}. Predicting power demand for various factors for any location in prague as mentioned in \autoref{ch:problem}. Utilizing existing data. So machine learning plus addition of some more insight.
+Given existing charging sessions data and data landscape as described in \autoref{ch:data}. We are interested in predicting power demand for any new potential charger location in Prague as mentioned in \autoref{ch:problem}. Utilizing existing data.
 
-So we are interested in predicting average profile for given charger given some temporal characteristic. Like month or day of the week.
+\begin{itemize}
+    \item define the data variables
+    \item formulate the problem
+    \item state possible solutions
+    \item introduce latent profiles neural network model
+    \item mention training procedure in all the detail, because everyone does this
+    \item data normalization
+    \item train test data split (based on location, to avoid double positions)
+    \item loss function
+    \item parameter tuning
+\end{itemize}
 
-
-\section{Latent Nerual Network Architecture}
-
-\todo{mention relevant literature for the latent network from literatrue research}
+\section{Architecture of the Latent Nerual Network}
 
 \begin{figure}[hb]
     \includegraphics[width=0.7\textwidth]{nn-latent-architecture.pdf}
@@ -28,17 +39,12 @@ So we are interested in predicting average profile for given charger given some 
     \label{fig:nn-latent}
 \end{figure}
 
-
-
-\todo{mentions operations done to the data plus anaylsis of statistical impact of features on result}
-
 \section{Input data transformation}
 
 Standardization mainly.
 
 \section{Training}
 
-\todo{train test split, mention to be sure that we are learning on unseen data. So mby how there are multple chargers for one point}
 
 \section{Baseline}
 
