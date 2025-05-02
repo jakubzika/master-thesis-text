@@ -1,9 +1,119 @@
+\setchapterstyle{kao}
+\setchapterpreamble[u]{\margintoc}
 \chapter{Conclusion}
 
-How good we think we have been. And what did this work provide.
+This thesis has addressed the critical challenge of predicting electric vehicle charging demand with high temporal and spatial resolution in the context of Prague, Czech Republic. As the transition to electric mobility accelerates—driven by environmental imperatives, technological advancements, and regulatory frameworks like the EU's 2035 ICE vehicle phase-out—the strategic deployment of charging infrastructure becomes increasingly crucial. This research contributes to this challenge by developing a data-driven approach to forecasting charging patterns that can inform infrastructure planning decisions.
 
-\textit{what was achieved in regards of the beginning goals}
+\section{Research achievements}
+
+The primary contribution of this research is the development and validation of a neural network model with latent profiles capable of predicting average power consumption (APC) at potential charging locations throughout Prague with hourly temporal resolution. This model offers several advantages over existing approaches:
+
+\begin{itemize}
+    \item \textbf{Interpretable architecture:} The latent profile structure of the neural network provides insights into underlying charging patterns, allowing for the identification of distinct temporal profiles that characterize different types of charging behavior. This interpretability enhances the model's utility for infrastructure planners by enabling them to understand not just where and when charging demand will occur, but also the nature of that demand.
+
+    \item \textbf{Dual optimization:} By simultaneously optimizing for both total daily power consumption (TDPC) and normalized daily power consumption (NDPC), the model captures both the magnitude and temporal distribution of charging demand. This dual focus is particularly valuable for grid integration planning, as it provides insights into both overall energy requirements and potential peak demand challenges.
+
+    \item \textbf{Feature importance insights:} The model's structure allows for the analysis of feature importance, revealing the relative influence of various spatial and temporal factors on charging demand. This analysis has identified significant correlations between charging patterns and specific points of interest, population characteristics, and temporal variables, providing actionable insights for infrastructure planning.
+
+    \item \textbf{Competitive performance:} As demonstrated in the quantitative comparison presented in Chapter 6, the model achieves performance comparable to or exceeding that of alternative approaches including linear regression, XGBoost, and baseline average models across multiple evaluation metrics. This validates the effectiveness of the latent profile approach for this application domain.
+\end{itemize}
+
+Beyond the model itself, this research has made several additional contributions:
+
+\begin{itemize}
+    \item \textbf{Methodological framework:} The research establishes a comprehensive methodological framework for charging demand prediction that integrates diverse data sources including charging session records, points of interest, population statistics, and mobility data. This framework can be adapted to other urban contexts with similar data availability constraints.
+
+    \item \textbf{Data processing pipeline:} The development of a robust data processing pipeline for transforming raw charging session data into average power consumption profiles with temporal patterns provides a valuable foundation for future research in this domain.
+
+    \item \textbf{Visualization tool:} The interactive dashboard developed for visualizing prediction results enables stakeholders to explore model outputs in a spatial context, enhancing the practical utility of the research for infrastructure planning applications.
+\end{itemize}
+
+\section{Evaluation against research objectives}
+
+Reflecting on the research objectives outlined in Chapter 2, this thesis has successfully:
+
+\begin{itemize}
+    \item Developed a machine learning model capable of predicting average power consumption at potential charging locations throughout Prague with hourly temporal resolution, as evidenced by the performance metrics presented in Chapter 6.
+
+    \item Identified and quantified the influence of various spatial and temporal factors on charging demand, including proximity to points of interest, population density, mobility patterns, and temporal variations by time of day, day of week, and season. The feature importance analysis and latent profile examination provide insights into these relationships.
+
+    \item Created a methodological framework that can be adapted to other urban contexts with similar data availability constraints, documented throughout Chapters 4 and 5.
+
+    \item Provided actionable insights for strategic charging infrastructure deployment that maximizes utilization while ensuring equitable access, particularly through the analysis of spatial determinants of charging demand and the development of the visualization dashboard.
+
+    \item Contributed to the broader understanding of electric vehicle charging behavior in Central European urban contexts, where limited research has been conducted compared to Western European and North American settings.
+\end{itemize}
+
+However, it is important to acknowledge certain limitations in the current approach:
+
+\begin{itemize}
+    \item The model's predictive accuracy, while competitive with alternative approaches, still exhibits significant error margins that could impact infrastructure planning decisions. This reflects the inherent complexity of charging behavior and the influence of factors not captured in the available data.
+
+    \item The reliance on historical charging data introduces potential biases related to the current distribution of charging infrastructure and EV adoption patterns, which may not reflect future conditions as the market matures.
+
+    \item The spatial resolution of certain data sources, particularly population and mobility data, limits the model's ability to capture micro-level variations in charging demand that may be significant for precise infrastructure placement.
+\end{itemize}
+
+Despite these limitations, the research represents a significant advancement in data-driven approaches to charging infrastructure planning in the Prague context, providing valuable insights for stakeholders navigating the transition to electric mobility.
 
 \section{Future work}
 
-What to do next to improve the model. What datases to be included.
+Building on the foundation established by this research, several promising directions for future work emerge:
+
+\subsection{Model enhancements}
+
+The current neural network architecture could be extended in several ways to improve predictive performance and expand its capabilities:
+
+\begin{itemize}
+    \item \textbf{Temporal dynamics:} Incorporating recurrent neural network components to capture temporal dependencies and seasonal patterns more effectively could enhance the model's ability to predict charging demand variations over longer time horizons.
+
+    \item \textbf{Spatial relationships:} Integrating graph neural network elements to model the spatial relationships between charging locations could improve predictions by accounting for network effects and competition between nearby charging stations.
+
+    \item \textbf{Transfer learning:} Exploring transfer learning approaches that leverage models trained on data-rich regions to improve predictions in areas with limited historical charging data could expand the model's applicability to emerging markets.
+
+    \item \textbf{Uncertainty quantification:} Extending the model to provide probabilistic forecasts with confidence intervals would enhance its utility for risk-aware infrastructure planning decisions.
+\end{itemize}
+
+\subsection{Additional data sources}
+
+The integration of additional data sources could address some of the limitations identified in the current approach:
+
+\begin{itemize}
+    \item \textbf{Vehicle registration data:} Incorporating detailed EV registration statistics at a fine spatial resolution would provide insights into the distribution of potential users and their vehicle characteristics, which influence charging requirements.
+
+    \item \textbf{Grid capacity data:} Integrating information on electrical grid capacity and constraints would enable the model to account for infrastructure limitations in its predictions, supporting more holistic planning approaches.
+
+    \item \textbf{Real-time traffic data:} Leveraging real-time or historical traffic flow data could improve the model's ability to capture the relationship between mobility patterns and charging demand.
+
+    \item \textbf{Weather data:} Including weather variables such as temperature, precipitation, and wind speed could enhance predictions by accounting for their influence on both vehicle energy consumption and travel behavior.
+
+    \item \textbf{Socioeconomic indicators:} Incorporating more detailed socioeconomic data could improve the model's ability to capture variations in EV adoption and charging behavior across different demographic groups.
+\end{itemize}
+
+\subsection{Application extensions}
+
+Beyond improvements to the core prediction model, several application extensions could enhance the practical impact of this research:
+
+\begin{itemize}
+    \item \textbf{Optimization framework:} Developing an optimization framework that leverages the prediction model to identify optimal charging infrastructure deployment strategies under various constraints and objectives would provide direct decision support for infrastructure planners.
+
+    \item \textbf{Scenario analysis:} Extending the model to support scenario analysis for different EV adoption trajectories, policy interventions, and technological developments would enhance its utility for long-term planning.
+
+    \item \textbf{Integration with grid planning:} Coupling the charging demand prediction model with electrical grid simulation tools would enable integrated planning that accounts for both mobility needs and grid constraints.
+
+    \item \textbf{Equity analysis:} Developing methods to evaluate the equity implications of different infrastructure deployment strategies would support more inclusive planning approaches that ensure access across diverse communities.
+\end{itemize}
+
+\subsection{Validation and deployment}
+
+Finally, several activities could enhance the validation and practical deployment of the research:
+
+\begin{itemize}
+    \item \textbf{Longitudinal validation:} Conducting longitudinal validation studies that compare model predictions with actual charging demand as new infrastructure is deployed would provide valuable insights into the model's real-world performance and opportunities for improvement.
+
+    \item \textbf{Stakeholder engagement:} Engaging with infrastructure planners, grid operators, and policymakers to refine the model and visualization tools based on their practical needs and feedback would enhance the research's impact.
+
+    \item \textbf{Cross-city comparison:} Applying the methodological framework to other cities and comparing results would provide insights into the generalizability of the approach and the transferability of findings across different urban contexts.
+\end{itemize}
+
+In conclusion, while this research has made significant contributions to the challenge of predicting electric vehicle charging demand in urban environments, it represents just one step in an ongoing journey toward enabling the sustainable transition to electric mobility. The future work outlined above offers promising pathways to build on these foundations and address the evolving needs of infrastructure planners, grid operators, and policymakers navigating this critical transformation.

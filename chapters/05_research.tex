@@ -26,16 +26,7 @@ To formulate how the model will look like, the model $f_\theta$ will execute the
     f_{\theta}: X \rightarrow Y
 \]
 
-Where $X$ will be the set of all feature vectors and $Y$ will be the set of all targets. The available data are split into training test and validation sets. The first available at training time with goal of the training algorithm to minimize the empirical risk.
-
-
-\begin{equation}
-    \begin{split}
-        \textit{train}:      \; \mathcal{T} & = ((x_i, y_i) \in X \times Y |\, i = 1,\dots, P) \\
-        \textit{test}:       \; \mathcal{S} & = ((x_i, y_i) \in X \times Y |\, i = 1,\dots, R) \\
-        \textit{validation}: \; \mathcal{V} & = ((x_i, y_i) \in X \times Y |\, i = 1,\dots, O)
-    \end{split}
-\end{equation}
+Where $X$ will be the set of all feature vectors and $Y$ will be the set of all targets. The available data are split into \textit{training} \textit{test} and \textit{validation} sets. The first available at training time with goal of the training algorithm to minimize the empirical risk. How those sets are constructed is explained in \ref{sec:dataset-split}
 
 
 $X \in \mathbb{R}^M$ and $Y\in \mathbb{R}^{24}$. And $| A | = | B | = P$.
@@ -293,14 +284,89 @@ This is then multiplied by the scalar from g module which finally gives us the r
     \label{fig:nn-latent}
 \end{figure}
 
+The model is implemented in Python with use of Pytorch library \sidecite{paszke2019pytorchimperativestylehighperformance}.
+
 \newpage
 
 
+\section{Dataset splitting}
+\label{sec:dataset-split}
 
-\section{Training}
+To elaborate more on the way the datasets $\mathcal{T},\mathcal{S},\mathcal{V}$  are split. Since we are interested in modelling demand for location. We cannot just take all the \acrlong{APC}. Because of an issue, where one location has multiple \acrshort{ABM} for various \acrlong{TP} and also because the \acrshort{CS} has multiple \acrshort{CP}. And there might be a high correlation between the multiple \acrshort{CP} and our goal is for the model to be able to estimate demand for new locations. So the split is done based on location. Where features for each location can be only present in one of the sets.
+
+% \begin{equation}
+%     \begin{split}
+%         \textit{train}:      \; \mathcal{T} & = ((x_i, y_i) \in X \times Y |\, i = 1,\dots, P) \\
+%         \textit{test}:       \; \mathcal{S} & = ((x_i, y_i) \in X \times Y |\, i = 1,\dots, R) \\
+%         \textit{validation}: \; \mathcal{V} & = ((x_i, y_i) \in X \times Y |\, i = 1,\dots, O)
+%     \end{split}
+% \end{equation}
 
 
-\section{Baseline}
+\begin{itemize}
+    \item[]
+          \begin{equation}
+              \label{eq:train}
+              \textit{train}: \; \mathcal{T} = ((x_i, y_i) \in X \times Y |\, i = 1,\dots, P)
+          \end{equation}
 
-To be able to tell if our results will have some value.
-Will we be better than average? Because no one has done it for Prague and even our greenfield problem formulation.
+          This dataset is used for training the model with use of \acrlong{SGD} for empirical risk minimization.
+          \vspace{3mm}
+    \item[]  \begin{equation}
+              \label{eq:test}
+              \textit{test}:       \; \mathcal{S}  = ((x_i, y_i) \in X \times Y |\, i = 1,\dots, R)
+          \end{equation}
+          Is used for inspecting results of the model to see its performance on never seen data and tuning hyperparameters. And is used as an estimate of true model risk.
+          \vspace{3mm}
+    \item[]  \begin{equation}
+              \label{eq:validation}
+              \textit{validation}: \; \mathcal{V} = ((x_i, y_i) \in X \times Y |\, i = 1,\dots, O)
+          \end{equation}
+          This dataset is used to obtain the final model risk on model with already trained parameters and chosen hyperparameters.
+\end{itemize}
+
+\section{Training procedure}
+
+\begin{itemize}
+    \item SGD
+    \item batches
+    \item early stopping to avoid overfitting
+    \item
+\end{itemize}
+
+
+\section{Other models for quantitative comparison}
+
+The model is quantitatively compared with other models from the filed of machine learning. Results from the comparsion can motivate further research with the existing model or enable to quickly reject it.
+
+One issue arrises from our custom loss, which is a mix with of two $L1$ losses. The ML models assume they want to minimize L1 loss. This might seem naive and not as a direct comparison hovewer more info will be provided in \ref{ch:results}.
+
+The models for comparsion are the following:
+
+\begin{itemize}
+    \item \textbf{Average} - The most simple baseline. That is taking average over the whole datasets feature vectors and using that value as a prediction. Both the train and test datasets $\mathcal{T},\mathcal{S},$ are utilized for this "model". It does not take into account the input and utilizes one value for any further predictions.
+
+          We provide the implementation.
+          \begin{equation}
+              \begin{split}
+                   & f(z)^{\mathcal{D}}  = \frac{1}{|\mathcal{D}|} \sum_{(x,\_) \in \mathcal{D}} x \\
+                   & f: \mathbb{R}^m \rightarrow \mathbb{R}^n                                      \\
+                   & n,m \in \mathbb{N}, \mathcal{D} \in  (X \times Y)^p, p \in \mathbb{N}
+              \end{split}
+          \end{equation}
+
+
+    \item \textbf{Linear regression} - Linear model
+
+          Implementation is taken from Python library Scikit Learn \sidecite{scikit-learn}
+          \begin{equation}
+              \begin{split}
+                   & f(z) = \alpha  + \beta z                                   \\
+                   & f: \mathbb{R}^m \rightarrow \mathbb{R}^n                   \\
+                   & \alpha \in \mathbb{R}^{n \times m}, \beta \in \mathbb{R}^n
+              \end{split}
+          \end{equation}
+    \item \textbf{XGBoost} - A scalable end-to-end tree boosting system \sidecite{Chen_2016}
+\end{itemize}
+
+The perofrmacne of these models is compared with our model based on mean absolute error, mean square error on the following: \acrlong{APC}, \acrlong{TDPC} and \acrlong{NDPC}.
