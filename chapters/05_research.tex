@@ -1,5 +1,6 @@
+\pagelayout{margin}
 \setchapterstyle{kao}
-% \setchapterpreamble[u]{\margintoc}
+\setchapterpreamble[u]{\margintoc}
 \chapter{Research and implementation}
 \label{ch:problem}
 
@@ -87,7 +88,7 @@ The feature vector will be constructed in the following way:
 
 \begin{table*}[h!]
     \def\arraystretch{1.5}
-    \caption{Overview of spatial features used in the feature vector.}
+    \caption{Overview of spatial features used in the feature vector. The additonal processing is describet at \ref{sec:spatial-transformations}}
     \label{tab:spatial-features-table}
     \begin{tabular}{p{1cm} p{3.5cm} p{1.8cm} p{3.5cm} p{4.5cm}}
         \toprule
@@ -126,14 +127,6 @@ The feature vector will be constructed in the following way:
     \end{tabular}
 \end{table*}
 
-\begin{itemize}
-    \item introduce latent profiles neural network model
-    \item mention training procedure in all the detail, because everyone does this
-    \item train test data split (based on location, to avoid double positions)
-    \item loss function
-    \item parameter tuning
-\end{itemize}
-
 \section{Architecture of the Latent Neural Network}
 
 The formulation of the machine learning problem provides us with ability of many solutions. Mainly from the class of nerual networks.
@@ -141,7 +134,7 @@ The formulation of the machine learning problem provides us with ability of many
 Neural networks are computational models. They consist of layers of interconnected nodes or "neurons" that process information. A typical neural network contains an input layer that receives data, one or more hidden layers that perform computations, and an output layer that produces the final result. Each connection between neurons has an associated weight that is adjusted during the training process. Information flows through the network via activation functions, which introduce non-linearity and allow the network to learn non-linear patterns. The training process involves feeding the network with labeled examples and using optimization algorithms, typically variants of gradient descent, to minimize a loss function by adjusting the weights. Backpropagation is the primary algorithm used to calculate gradients and update weights efficiently.
 
 
-This leads us to the proposed neural network with latent profiles. Diagram of the network is visible at \ref{fig:nn-latent}. Before diving into the detailed network architecture a high level overview. The goal of the network is to construct for its internal use $K$ \sidenote{K is hyperparameter} latent profiles. Which is a matrix $R$ where $R \in \mathbb{R}^{24 \times K}$. And then estimate with use of $f$ module their mixture into the resulting L1 normalized profile. Then there is the $g$ module. Whose purpose is to estimate the overall day power consumption. Where the output of it is multiplied with the already mixed latent profiles.
+This leads us to the proposed neural network with latent profiles. Diagram of the network is visible at \ref{fig:nn-latent}. Before diving into the detailed network architecture a high level overview. The goal of the network is to construct for its internal use latent profile matrix $R$, $R \in \mathbb{R}^{24 \times K}$ for which it predicts how they should be mixed.
 
 \newpage
 
@@ -304,35 +297,35 @@ To elaborate more on the way the datasets $\mathcal{T},\mathcal{S},\mathcal{V}$ 
 
 
 \begin{itemize}
-    \item[]
+    \item \textbf{Train} dataset is used for training the model with use of \acrlong{SGD} for empirical risk minimization.
           \begin{equation}
               \label{eq:train}
               \textit{train}: \; \mathcal{T} = ((x_i, y_i) \in X \times Y |\, i = 1,\dots, P)
           \end{equation}
-
-          This dataset is used for training the model with use of \acrlong{SGD} for empirical risk minimization.
           \vspace{3mm}
-    \item[]  \begin{equation}
+
+
+    \item \textbf{Test} dataset is used for inspecting results of the model to see its performance on never seen data and tuning hyperparameters. And is used as an estimate of true model risk.
+
+          \begin{equation}
               \label{eq:test}
               \textit{test}:       \; \mathcal{S}  = ((x_i, y_i) \in X \times Y |\, i = 1,\dots, R)
           \end{equation}
-          Is used for inspecting results of the model to see its performance on never seen data and tuning hyperparameters. And is used as an estimate of true model risk.
           \vspace{3mm}
-    \item[]  \begin{equation}
+    \item \textbf{Validation} dataset is used to obtain the final model risk on model with already trained parameters and chosen hyperparameters.
+          \begin{equation}
               \label{eq:validation}
               \textit{validation}: \; \mathcal{V} = ((x_i, y_i) \in X \times Y |\, i = 1,\dots, O)
           \end{equation}
-          This dataset is used to obtain the final model risk on model with already trained parameters and chosen hyperparameters.
 \end{itemize}
 
 \section{Training procedure}
 
-\begin{itemize}
-    \item SGD
-    \item batches
-    \item early stopping to avoid overfitting
-    \item
-\end{itemize}
+To train the model, we utilize the traditional Pytorch training procedure.
+It was conducted using mini-batching \acrfull{SGD} optimization. The model was trained iteratively over several epochs with early stopping to prevent overfitting.
+
+The batch size was selected to be X\todo{insert value} and the model took Y \todo{insert value} epochs with early termination before starting to overfit the training dataset.
+
 
 
 \section{Other models for quantitative comparison}
@@ -369,4 +362,6 @@ The models for comparsion are the following:
     \item \textbf{XGBoost} - A scalable end-to-end tree boosting system \sidecite{Chen_2016}
 \end{itemize}
 
-The perofrmacne of these models is compared with our model based on mean absolute error, mean square error on the following: \acrlong{APC}, \acrlong{TDPC} and \acrlong{NDPC}.
+The peformance of these models is compared with our model based on mean absolute error, mean square error on the following: \acrlong{APC}, \acrlong{TDPC} and \acrlong{NDPC}.
+
+In case of the profiles. We divide the loss by 24. To obtain error for an hour instead of the 24 hours.

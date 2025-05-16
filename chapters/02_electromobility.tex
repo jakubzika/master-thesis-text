@@ -2,53 +2,61 @@
 
 \setchapterstyle{kao}
 \setchapterpreamble[u]{\margintoc}
-\chapter{Motivation - Electromobility and Climate Change}
+\chapter{Electromobility and Climate Change}
 
-This chapter explores the fundamental motivations behind the transition to electric mobility, examining the environmental imperatives driving this shift, the evolution of electric vehicles, regulatory frameworks accelerating adoption, and the critical infrastructure challenges that must be addressed to enable widespread electrification of transportation.
+This chapter explores the motivations behind the transition to electric mobility, examining the environmental causes driving this shift, the evolution of electric vehicles, regulatory frameworks accelerating adoption, and the critical infrastructure challenges that must be addressed to enable widespread electrification of transportation. One of the identified challenges, which is demand for chargers will be introduced. It will be the main topic of this thesis and our focus on predicting it based on existing data for new potential charger locations to aid the decision making process.
+
 
 \section{Climate change}
 
-Climate change represents one of the most pressing global challenges of our time, with transportation being a significant contributor to greenhouse gas emissions. The Intergovernmental Panel on Climate Change (IPCC) has consistently identified the burning of fossil fuels as the primary driver of anthropogenic climate change, with transportation accounting for approximately 24\% of direct CO\textsubscript{2} emissions from fuel combustion globally \cite{ipcc2022}. Within this sector, road vehicles—particularly those powered by internal combustion engines (ICEs)—are responsible for nearly three-quarters of transport emissions.
+Climate change represents one of the most pressing global challenges of our time, with transportation being a significant contributor to greenhouse gas emissions. The burning of fossil fuels is the primary driver of anthropogenic climate change, with transportation accounting for approximately 24\% of direct CO\textsubscript{2} emissions from fuel combustion globally \cite{quadrelliEnergyClimateChallenge2007}.
 
-The environmental impact of ICE vehicles extends beyond carbon dioxide emissions. These vehicles also produce nitrogen oxides (NO\textsubscript{x}), particulate matter, and other pollutants that contribute to poor air quality, respiratory diseases, and premature deaths in urban areas. The World Health Organization estimates that air pollution causes approximately 7 million premature deaths annually, with vehicle emissions being a significant contributor in urban environments \cite{who2021}.
+The environmental impact of ICE vehicles extends beyond carbon dioxide emissions. These vehicles also produce other polutants. Which have negative health outcomes like increased mortality (about 3\% of mortality in Europe \cite{kunzliPublichealthImpactOutdoor2000}), asthma attacks, higher cardiovascular hospital admissions, higher repiratory hospital admissions \cite{kunzliHealthCostsDue1999}.
 
 \begin{figure}[h]
     \centering
-    % This is a placeholder for a pie chart showing emission sources
-    % \includegraphics[width=0.7\textwidth]{images/emissions-pie-chart.png}
-    \caption{Global greenhouse gas emissions by sector, highlighting transportation's contribution (Source: IPCC AR6, 2022)}
-    \label{fig:emissions-chart}
+    \includegraphics{introduction/polution_source.png}
+    \label{fig:polution_source}
+    \caption{Share of EU emissions in 2020. PM2.5 = fine particulate matter; PM10 = particulate matter; Energy consumption = residential, commercial and institutional energy consumption; NMVOC = non-methane volatile organic compounds. Source \cite{ContributionsEU27Emissions2022}}
 \end{figure}
 
-While the scientific consensus on anthropogenic climate change is robust, it is worth acknowledging that the transition to electric mobility is not without controversy. Critics point to the environmental impact of battery production, concerns about electricity generation sources, and the socioeconomic implications of rapid technological change. However, lifecycle analyses consistently demonstrate that even when accounting for battery production and electricity generation, electric vehicles produce significantly lower lifetime emissions than their ICE counterparts in most regions of the world, with this advantage growing as electricity grids incorporate more renewable energy sources \cite{eea2018}.
-
-The climate imperative is particularly challenging for developing nations, which face the dual pressures of reducing emissions while supporting economic growth and mobility needs. These countries often lack the infrastructure and financial resources to rapidly transition to electric mobility, yet they are frequently among the most vulnerable to climate change impacts. International cooperation, technology transfer, and equitable financing mechanisms will be essential to ensure that the global transition to sustainable transportation does not exacerbate existing inequalities.
+While the scientific consensus on anthropogenic climate change is robust, it is worth acknowledging that the transition to electric mobility is not without controversy. The manufacturing process of \acrlong{EV} has higher negative enviromental impact compared to \acrlong{ICE} due to battery manufacturing. But they have a chance to mitigate this over their lifetime use if the share of generated energy for their use comes from sustainable sources. Combined with remanufacturing and recycling of old batteries. \sidecite{xiaReviewLifeCycle2022a}
 
 \section{Electric vehicles}
 
-The history of electric vehicles (EVs) is marked by a fascinating parallel development alongside internal combustion engine vehicles, rather than being a purely modern innovation. In fact, electric vehicles were among the first automobiles developed in the late 19th century, with inventors like Thomas Parker creating practical electric cars as early as 1884. During the early automotive era, electric vehicles competed directly with steam and gasoline-powered vehicles, and were particularly popular in urban environments due to their quiet operation, absence of exhaust, and ease of use compared to early ICE vehicles that required hand-cranking to start.
+The history of electric vehicles (EVs) is marked by a parallel development alongside internal combustion engine vehicles, rather than being a purely modern innovation. In fact, electric vehicles were among the first automobiles developed in the late 19th century, with inventors like Gustav Trouvé creating electric cars as early as 1881 \sidecite{wakefield1998history}. During the early automotive era, electric vehicles competed directly with steam and gasoline powered vehicles. And even had dominance in early 20th century (An electric vehicle taxi existed for a short period of time in 1987 London \sidecite{SurprisinglyOldStory2012}).
 
-However, the limitations of early battery technology—particularly in terms of energy density, range, and recharging infrastructure—combined with the discovery of abundant petroleum reserves and the introduction of the electric starter for gasoline engines, led to the dominance of ICE vehicles throughout most of the 20th century. Electric vehicles remained largely confined to specialized applications such as forklifts, golf carts, and other short-range utility vehicles.
+However, the limitations of early battery technology—particularly in terms of energy density, range, and recharging infrastructure—combined with the discovery of abundant petroleum reserves and the introduction of the electric starter for gasoline engines, led to the dominance of ICE vehicles throughout most of the 20th century . And use of electric engines in transportation remained in city trams and subways.
 
-The modern resurgence of electric vehicles began in earnest in the late 1990s and early 2000s, driven by advances in lithium-ion battery technology, growing environmental concerns, and regulatory pressures. The introduction of hybrid vehicles like the Toyota Prius served as a transitional technology, familiarizing consumers with electric drivetrains while alleviating range anxiety through the backup of a gasoline engine. The launch of the Tesla Roadster in 2008 demonstrated that electric vehicles could offer performance comparable to or exceeding that of high-end sports cars, challenging perceptions that EVs were inherently limited in capability.
+The modern resurgence of electric vehicles began in the late 1990s and early 2000s, driven by advances in lithium-ion battery technology, growing environmental concerns. The introduction of hybrid vehicles like the Toyota Prius served as a transitional technology, familiarizing consumers with electric drivetrains while alleviating range anxiety through the backup of a gasoline engine. The launch of the Tesla Roadster in 2008 demonstrated that electric vehicles could offer performance comparable to or exceeding that of high-end sports cars, challenging perceptions that EVs were inherently limited in capability \sidecite{ElectricVehicleFuture}.
 
-Today's electric vehicles have largely overcome many of the historical limitations that hindered their adoption. Modern EVs offer ranges exceeding 300-400 kilometers on a single charge, with high-end models approaching 600 kilometers. Fast-charging infrastructure has expanded significantly, enabling long-distance travel with reasonable charging stops. The total cost of ownership for EVs has become increasingly competitive with ICE vehicles due to lower operating and maintenance costs, despite higher initial purchase prices—a gap that continues to narrow as battery costs decline and economies of scale improve.
+Today's electric vehicles have largely overcome many of the historical limitations that hindered their adoption. Modern EVs offer ranges exceeding 300-400 kilometers on a single charge, with high-end models approaching 600 kilometers. Fast-charging infrastructure has expanded significantly, enabling long-distance travel with reasonable charging stops. The total cost of ownership for EVs has become increasingly competitive with ICE vehicles due to lower operating and maintenance costs, despite higher initial purchase prices. A gap that continues to narrow as battery costs decline and economies of scale improve (see Figure \ref{fig:ev-sales}).
+
 
 \begin{figure}[h]
     \centering
-    % This is a placeholder for a graph showing EV adoption growth
-    % \includegraphics[width=0.7\textwidth]{images/ev-adoption-growth.png}
-    \caption{Global electric vehicle sales growth, 2015-2023 (Source: International Energy Agency, Global EV Outlook 2023)}
-    \label{fig:ev-growth}
+    \includegraphics{introduction/ev_sales_rise.png}
+    \caption{Global electric car sales, 2014-2024. Source: IEA analysis based on country submissions, ACEA, EAFO, EV Volumes and Marklines \cite{IEA2024}}
+    \label{fig:ev-sales}
 \end{figure}
 
-The environmental benefits of electric vehicles are substantial, particularly when powered by low-carbon electricity sources. Even when accounting for the current global electricity mix, which still includes significant fossil fuel generation, EVs typically produce lower lifecycle greenhouse gas emissions than comparable ICE vehicles. As electricity grids continue to decarbonize, this advantage will only increase. Additionally, the shift of emissions from millions of individual tailpipes to centralized power plants offers significant air quality benefits in urban areas and creates opportunities for more efficient pollution control.
+
+The environmental benefits of electric vehicles are substantial, particularly when powered by low-carbon electricity sources. Even when accounting for the current global electricity mix, which still includes significant fossil fuel generation, EVs typically produce lower lifecycle greenhouse gas emissions than comparable ICE vehicles. As electricity grids continue to decarbonize, this advantage will only increase (see Figure \ref{fig:co2_predictions_czechia}). Additionally, the shift of emissions from millions of individual tailpipes to centralized power plants offers significant air quality benefits in urban areas and creates opportunities for more efficient pollution control.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{introduction/co2_predictions.png}
+    \caption{CO\textsubscript{2} emission  from electricity production prediction for Czechia for selected years \cite{CEPS}}
+    \label{fig:co2_predictions_czechia}
+\end{figure}
 
 However, the transition to electric mobility faces many of the same infrastructure challenges that the early automobile industry encountered. Just as the widespread adoption of ICE vehicles required the development of a comprehensive network of gas stations, repair facilities, and roads, the EV revolution depends on the deployment of charging infrastructure, grid upgrades, and maintenance expertise. These parallels suggest that while the challenges are significant, they are not unprecedented and can be overcome through coordinated investment and policy support.
 
 \section{EU mandate}
 
-The European Union has established one of the world's most ambitious regulatory frameworks to accelerate the transition to electric mobility as part of its broader climate strategy. The cornerstone of this approach is Regulation (EU) 2019/631, which sets CO\textsubscript{2} emission performance standards for new passenger cars and light commercial vehicles. This regulation has been progressively strengthened, culminating in the European Commission's "Fit for 55" package proposed in July 2021 and subsequently adopted, which aims to reduce net greenhouse gas emissions by at least 55\% by 2030 compared to 1990 levels.
+
+
+The European Union has established regulatory framework to accelerate the transition to electric mobility as part of its broader climate strategy. The cornerstone of this approach is Regulation (EU) 2019/631 \sidecite{RegulationEU20192019}, which sets CO\textsubscript{2} emission performance standards for new passenger cars and light commercial vehicles. This regulation is part of "Fit for 55" package proposed in July 2021 and subsequently adopted, which aims to reduce net greenhouse gas emissions by at least 55\% by 2030 compared to 1990 levels \sidecite{CasovaOsaZelena}\sidecite{CoJeFit}.
 
 The most transformative element of this regulatory framework is the mandate that effectively prohibits the sale of new internal combustion engine vehicles in the EU from 2035 onward. Specifically, the regulation requires a 100\% reduction in CO\textsubscript{2} emissions from new cars and vans by 2035 compared to 2021 levels, which in practice means that only zero-emission vehicles—battery electric or hydrogen fuel cell—can be sold as new vehicles after this date. This represents a clear and unambiguous signal to the automotive industry, infrastructure developers, and consumers about the direction of transportation policy in Europe.
 
@@ -56,73 +64,65 @@ The EU's approach includes intermediate targets to ensure a gradual transition: 
 
 This regulatory certainty has already catalyzed significant investment in electric vehicle production and charging infrastructure across Europe. Major automotive manufacturers have announced accelerated timelines for electrifying their fleets, with many planning to phase out ICE vehicle production well before the 2035 deadline. The mandate has also spurred innovation in battery technology, charging solutions, and vehicle design as companies compete to position themselves advantageously in the emerging electric mobility ecosystem.
 
-The EU's approach demonstrates how regulatory frameworks can create the conditions for market transformation by providing clear, long-term signals that enable businesses and consumers to plan and invest with confidence. By establishing a definitive end date for new ICE vehicle sales, the EU has moved beyond incremental improvements to fossil fuel efficiency and committed to a fundamental technological transition in personal transportation.
+By establishing a definitive end date for new ICE vehicle sales, the EU has moved beyond incremental improvements to fossil fuel efficiency and committed to a fundamental technological transition in personal transportation.
 
-\section{Public Electric Charging Locations}
+\begin{figure}
+    \includegraphics{introduction/ev_prediction_czechia.png}
+    \caption{Prediction on number of EVs in Czechia taking into account the (EU) 2019/631 regulation }
+\end{figure}
 
-Public electric vehicle charging infrastructure represents a critical enabler for widespread EV adoption, particularly for urban residents without access to private charging facilities. Unlike the relatively standardized experience of refueling an ICE vehicle, EV charging encompasses a diverse ecosystem of technologies, power levels, connector types, and usage patterns that reflect the evolving nature of electric mobility.
+\section{Electric Vehicle Chargers}
 
-Modern EV charging infrastructure is typically categorized by power output, which directly affects charging speed:
+Due to high urban density in Prague. Especially in the city center which mostly consist of apartment buildings. Street parking is the dominant type of parking here. Those parking locations do not have easy access to \acrlong{EV} charging and they require construction as well as having the power source somewhere (underground). Opposed to single family housing where high number of parking spots is located on the houses private land. Where there is higher accessibility to private electric charger. Where the simplest solution can be an electrical outlet.
 
-\begin{itemize}
-    \item \textbf{Level 1 (Slow) Charging:} Utilizing standard household outlets (typically 2.3-3.7 kW), these chargers add approximately 10-20 kilometers of range per hour of charging. While inadequate as a primary charging solution for most users, they serve as emergency options or for overnight charging in residential settings.
-
-    \item \textbf{Level 2 (Medium) Charging:} Operating at 7-22 kW, these AC chargers can fully replenish most EV batteries in 4-8 hours, making them suitable for workplace, residential, and destination charging where vehicles are parked for extended periods. They represent the majority of public charging points in most regions.
-
-    \item \textbf{DC Fast Charging:} Delivering 50-350+ kW of power directly to the vehicle's battery, these stations can provide an 80\% charge in 20-40 minutes for compatible vehicles. They are strategically deployed along major travel corridors and in urban centers to enable long-distance travel and quick top-ups for those without home charging access.
-\end{itemize}
-
-The physical infrastructure of charging stations varies considerably, from simple wall-mounted units to sophisticated multi-port stations with integrated payment systems, user authentication, load management, and network connectivity. Most public charging stations are connected to management platforms that enable remote monitoring, usage tracking, and dynamic pricing, creating a digital layer that enhances the user experience and operational efficiency.
-
-Connector standards have evolved regionally, with the Combined Charging System (CCS) emerging as the dominant standard in Europe and North America, CHAdeMO prevalent in Japanese vehicles, and GB/T standard in China. The industry has been moving toward greater standardization, with many newer vehicles adopting CCS, though legacy systems will remain in operation for years to come.
-
-Despite significant growth in charging infrastructure, access remains unevenly distributed, with substantial gaps in many urban residential areas where residents rely on street parking and lack access to private charging facilities. This "charging desert" phenomenon disproportionately affects apartment dwellers and those in older urban neighborhoods, creating a potential barrier to equitable EV adoption. Studies indicate that approximately 30-40\% of European urban residents lack access to private parking where home charging could be installed, highlighting the critical importance of public charging infrastructure for these populations.
-
-The current trajectory of EV adoption, accelerated by regulatory mandates like the EU's 2035 ICE vehicle phase-out, will require a massive expansion of charging infrastructure. The European Commission estimates that up to 3.5 million public charging points will be needed across the EU by 2030 to support the expected growth in electric vehicles—a nearly tenfold increase from current levels. This expansion must be strategically planned to ensure equitable access, grid compatibility, and alignment with mobility patterns.
-
-\subsection{EV Charging Location Placement problem}
-
-The strategic placement of EV charging infrastructure represents a complex optimization challenge with significant economic, technical, and social dimensions. Unlike traditional gasoline stations, which primarily serve vehicles passing through specific corridors, EV charging locations must accommodate diverse charging behaviors that include destination charging, opportunity charging, and en-route fast charging for longer journeys.
-
-From an economic perspective, charging infrastructure deployment requires substantial capital investment—ranging from approximately €2,000-5,000 for a basic AC charging point to €100,000 or more for a high-power DC fast charging station, including installation and grid connection costs. These investments face uncertain utilization rates during the early adoption phase, creating challenging business cases that often require public subsidies or innovative business models to become viable. The long-term profitability of charging operations depends on multiple factors including utilization rates, electricity costs, maintenance requirements, and the ability to capture value through charging fees or complementary services.
-
-The technical challenges of charging infrastructure placement extend beyond the charging equipment itself to include grid integration considerations. High-power charging stations can place significant demands on local distribution networks, potentially requiring costly grid upgrades or reinforcement. Strategic placement that aligns with existing grid capacity can substantially reduce deployment costs and timelines. Additionally, the temporal distribution of charging demand throughout the day creates opportunities for smart charging systems that can help flatten load profiles and reduce peak demand, potentially providing valuable grid services through vehicle-to-grid (V2G) capabilities.
-
-The social dimension of charging infrastructure placement involves ensuring equitable access across different communities and addressing the specific needs of various user groups. Charging deserts in urban residential areas without private parking facilities represent a particular challenge that requires innovative solutions such as curbside charging, integration with street lighting, or community charging hubs. Public charging infrastructure must also be accessible to users with disabilities and designed with safety considerations for all users, particularly in 24-hour self-service environments.
-
-Data-driven approaches to charging infrastructure planning have emerged as essential tools for optimizing placement decisions. These approaches typically incorporate multiple data sources including:
+Modern EV charging infrastructure can be categorized by power output, which directly affects charging speed \sidecite{Regulation20231804}:
 
 \begin{itemize}
-    \item Traffic flow patterns and vehicle dwell times
-    \item Demographic data and EV adoption projections
-    \item Land use and points of interest
-    \item Existing charging infrastructure distribution and utilization
-    \item Electrical grid capacity and upgrade costs
-    \item Temporal patterns of mobility and energy demand
+    \item \textbf{Category 1 (AC):}
+          \begin{itemize}
+              \item \textbf{Slow AC charging:} Utilizing standard household outlets (P < 7.4 kW). While inadequate as a primary charging solution for most users, they serve as emergency options or for overnight charging in residential settings.
+
+              \item \textbf{Medium-speed AC charging:} Operating at 7.4-22 kW, these chargers can fully replenish most EV batteries in 4-8 hours.
+
+              \item \textbf{Fast AC charging:} Operating at > 22 kW.
+          \end{itemize}
+
+    \item \textbf{Category 2 (DC):}
+          \begin{itemize}
+              \item \textbf{Slow DC charging:} Less than 50 kW.
+
+              \item \textbf{Fast DC charging:} 50-150 kW.
+
+              \item \textbf{Ultra-fast DC charging:} 150-350 kW and above.
+          \end{itemize}
 \end{itemize}
 
-By integrating these diverse datasets, planners can develop sophisticated models that predict charging demand with high temporal and spatial resolution, enabling more efficient infrastructure deployment that maximizes utilization while minimizing costs. These models become particularly valuable when they can account for the dynamic nature of EV adoption and changing mobility patterns, allowing for adaptive planning that evolves as the market matures.
+DC fast charging stations can provide an 80\% charge in 20-40 minutes for compatible vehicles. They are strategically deployed along major travel corridors and in urban centers to enable long-distance travel and quick top-ups for those without home charging access.
 
-The ability to accurately forecast charging demand at specific locations and times represents a critical capability for infrastructure planners, grid operators, and charging network developers. High-resolution temporal forecasting enables not only more strategic infrastructure placement but also more efficient operation through predictive maintenance scheduling, dynamic pricing strategies, and load management. This creates a compelling case for advanced modeling approaches that can capture the complex interplay of factors influencing charging behavior and translate them into actionable insights for infrastructure development.
+The installation costs vary based on charger type. A significant challenge is managing grid load, particularly during peak demand periods such as after-work hours. This has led to the development of smart charging systems with dynamic pricing. Chargers can also be installed in public lighting lamps as a cost-effective solution.
+
+The technical challenges of charging infrastructure placement extend beyond the charging equipment itself to include grid integration considerations. High-power charging stations can place significant demands on local distribution networks, potentially requiring costly grid upgrades or reinforcement. Strategic placement that aligns with existing grid capacity can substantially reduce deployment costs and timelines.
+
+Data-driven approaches to infrastructure planning incorporate multiple data sources including traffic patterns, demographics, points of interest, existing infrastructure utilization, grid capacity, and temporal mobility patterns. By integrating these diverse datasets, planners can develop models that predict charging demand with high temporal and spatial resolution, enabling more efficient infrastructure deployment that maximizes utilization while minimizing costs.
 
 \section{Goals of the thesis}
 
-This thesis aims to address the critical challenge of predicting electric vehicle charging demand with high temporal and spatial resolution, focusing specifically on the context of Prague, Czech Republic. By developing a data-driven approach to forecasting charging patterns, this research seeks to provide valuable insights for infrastructure planners, grid operators, and policymakers navigating the transition to electric mobility.
-
-The specific objectives of this research include:
+This thesis explores the challenge of predicting electric vehicle charging demand in Prague through data analysis and machine learning approaches. Working with data provided by PREdistribuce, this research investigates whether spatial and temporal features can effectively predict charging patterns. The specific objectives addressed in this thesis are:
 
 \begin{itemize}
-    \item Developing a machine learning model capable of predicting average power consumption (APC) at potential charging locations throughout Prague, with hourly temporal resolution
+    \item To examine the current state of electromobility and climate change, establishing the context for the growing importance of charging infrastructure planning
 
-    \item Identifying and quantifying the influence of various spatial and temporal factors on charging demand, including proximity to points of interest, population density, mobility patterns, and temporal variations by time of day, day of week, and season
+    \item To analyze charging session data from PREdistribuce's network of public charging stations in Prague, transforming raw session data into hourly power consumption patterns
 
-    \item Creating a methodological framework that can be adapted to other urban contexts with similar data availability constraints
+    \item To integrate publicly available spatial data sources, including Basic Settlement Units (ZSJ) demographics and OpenStreetMap points of interest, with charging data to create a comprehensive feature set
 
-    \item Providing actionable insights for strategic charging infrastructure deployment that maximizes utilization while ensuring equitable access
+    \item To develop a neural network model with latent profiles that attempts to capture underlying patterns in charging behavior while maintaining interpretability
 
-    \item Contributing to the broader understanding of electric vehicle charging behavior in Central European urban contexts, where limited research has been conducted compared to Western European and North American settings
+    \item To evaluate the model's performance against baseline approaches (average model, linear regression, XGBoost) using various error metrics
+
+    \item To analyze the learned latent profiles to determine if meaningful charging patterns could be extracted despite the model's overall performance limitations
+
+    \item To identify data limitations and suggest potential improvements for future research in charging demand prediction
 \end{itemize}
 
-This research employs a novel neural network architecture with latent profiles to capture the complex patterns in charging demand, leveraging diverse datasets including charging session records, points of interest, population statistics, and mobility data. The approach balances predictive accuracy with interpretability, allowing for insights into the underlying factors driving charging behavior.
-
-By addressing these objectives, this thesis contributes to the practical challenge of enabling the transition to electric mobility through strategic infrastructure development, while advancing the methodological approaches available for charging demand forecasting in urban environments.
+This research represents an initial exploration into charging demand prediction in the context of Prague, acknowledging the challenges of limited data availability and quality. While the predictive performance did not exceed baseline models, the methodological approach and analysis of limitations provide valuable insights for future research directions in this field.

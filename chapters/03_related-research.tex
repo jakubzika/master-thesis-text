@@ -1,6 +1,9 @@
+\pagelayout{margin}
 \setchapterstyle{kao}
 \setchapterpreamble[u]{\margintoc}
 \chapter{Related research}
+
+\todo[inline]{The introduction to this chapter needs significant improvement. The current text is informal and contains grammatical errors. Rewrite to provide a clear, structured overview of the literature review approach and organization. Use complete sentences and academic language.}
 
 This section mentions relevant literature that focuses either on the very same issue. Or topics close to predicting EV charger demand. There are not that many papers focusing on our specific issue however there is a lot of knowledge ihdden inside of them. The papers analyzed in this chapter provide insight into how similar issues were tackled. And on what does the research focus on.
 
@@ -9,17 +12,23 @@ First, from an outside perspective. Issues and topic of the papers will be explo
 
 Because this is spatial data science. Most of the papers are very practical in a sense that they work with real datasets. And each country and even city has different data gathering culture and data availabilty. The research is tightly connected to what data is available. No relevant paper for our issue was found focusing on Prague.
 
+\todo[inline]{This chapter should begin with a clear explanation of your literature review methodology - how papers were selected, what databases were searched, what inclusion/exclusion criteria were used, and how many papers were ultimately reviewed.}
+
 
 \section{Issue addressed}
 
+\todo[inline]{This section title should be more descriptive, such as "Key Research Areas in EV Charging Literature". The current bullet list should be expanded into proper paragraphs that explain each research area and how they relate to your work.}
+
 \begin{itemize}
     \item EV charger demand prediction
-    \item EV charger use anaylsis
+    \item EV charger use anaylsis \todo[inline]{Spelling error: "anaylsis" should be "analysis"}
     \item Charging infrastructure planning and optimization
     \item Digital twin
 \end{itemize}
 
 \section{Research approaches}
+
+\todo[inline]{This section is extremely underdeveloped and informal. It should be completely rewritten to provide a comprehensive overview of the different methodological approaches in the literature, with proper citations and explanations of how each approach contributes to the field.}
 
 Starting from simple statistics. Then menitoning agent simulations. And end with ML.
 
@@ -34,7 +43,7 @@ The study had some statisficaly significant results. They also trained neural ne
 
 \sidecite{dongElectricVehicleCharging2019} uses log-Gaussian Cox process. Which is a statistical model that can handle dependence between points on a map (EV chargers). It has identified that workplace population and traffic flow are positively related to demand of\acrfull{CP} while commerce is in a negative relation. \sidenote{<workplace population, traffic flow, commerce description here>}.
 
-\begin{kaobox}[frametitle=Simulation vs Model ]
+\begin{kaobox}[frametitle=Simulation vs Model]
     Model is concerned with representing a system of interest. Purpose of it is so it matches its real system in some behaviour while being simpler than reality. There are many ways how to construct models. From simplest small replicas (small car models to use in wind tunnel) to complicated mathematical and software ones.
 
     Simulation is then a use of model to try to replicate some real system of interest to gain insights how a real system might behave .
@@ -127,15 +136,20 @@ Paper: \sidecite{powellScalableProbabilisticEstimates2022}
 
 \textit{ML for predictions, not explainable. Just learning on data}
 
+\todo[inline]{This section contains only placeholder text and a todo note. It needs to be fully developed with a comprehensive review of forecasting approaches in EV charging demand literature, including both statistical forecasting methods and machine learning approaches. Include a discussion of the trade-offs between model explainability and predictive performance.}
+
 \section{Infrastructure Planning}
 
 \textit{Charger placement, optimization problem how to cover certain areas. ILP and others used}
+
+\todo[inline]{This section also contains only placeholder text. Develop a comprehensive review of infrastructure planning approaches, including optimization methods, coverage models, and decision support systems. Discuss how these approaches relate to your research on charging demand prediction.}
 
 
 \section{Czechia and Prague Relevant Research}
 
 \textit{No research paper has been found with theme of EVs and Czechia/Prague. So only relevant stuff is gonna be mentioned}
 
+\todo[inline]{This section needs to be developed beyond placeholder text. Even if no direct research on EV charging in Prague exists, you should discuss relevant research on urban mobility in Prague, transportation planning in Czech cities, or other related topics that provide context for your work. The citations listed need to be properly discussed, not just listed.}
 
 \sidecite{pekarekModelChargingService2017}
 \sidecite{elomiyaAdvancedSpatialDecision2024}
@@ -149,6 +163,8 @@ Predicts density of each building per $100m^2$ living area. With $R^2 = 94\%$.
 
 \section{Discussion}
 
+\todo[inline]{This discussion section needs significant improvement. It should synthesize the findings from the literature review, identify research gaps, and clearly position your work within the existing literature. The current text is informal and lacks proper structure.}
+
 From observed papers regarding simulation to obtain some estimate of charging demand. Either, in absence of data, expert knowledge is utilized to create simmulations. Which lean more on engineering complexity. Due to need to simmulate some percent of city/country population. But they might not always be feasible to develop as well as calibrating. Which is to ensure the simulation matches real world. But then they have large utility and flexibilty. For example examine policy changes.
 
 When data is available, turn to more data based methods is more common. Instead of microscopic simulations. Stochastic properties of people are obtained from the data or estimated to match the data.
@@ -157,3 +173,6 @@ When data is available, turn to more data based methods is more common. Instead 
 
 \textit{Mention how the relevant research is helpful for us. Also how noone has studied Prague and that it has different data landscape. And so we have to do a new approach.}
 
+\todo[inline]{This section contains only placeholder text. It should be fully developed to clearly articulate the specific research gaps your work addresses. Explain how your approach differs from existing methods and why it's necessary given the unique context of Prague. This section is crucial for establishing the novelty and contribution of your research.}
+
+\todo[inline]{Overall, this entire chapter needs substantial development. Many sections contain only placeholder text or brief notes. A thorough literature review is essential for positioning your research within the existing body of knowledge and establishing its contribution. Each section should be expanded with proper academic writing, comprehensive analysis of relevant papers, and clear connections to your research objectives.}

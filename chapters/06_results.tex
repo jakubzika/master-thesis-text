@@ -1,56 +1,113 @@
-\setchapterstyle{kao}
-\setchapterpreamble[u]{\margintoc}
-
+\pagelayout{margin}
 \setchapterstyle{kao}
 \setchapterpreamble[u]{\margintoc}
 \chapter{Results}
 \label{ch:results}
 
-\todo{Say that the other ml models do not need more detailed loss functions since our model was not convincingly better}
+In this chapter, we present and analyze the results of our prediction model. First, a quantitative comparison with other models is provided using various error metrics to evaluate the model's performance. Next, we analyze the latent profiles learned by our model and examine how they are utilized in predictions. We then assess the model's ability to predict total power consumption. Finally, we summarize the key findings from our experiments and their implications.
 
+\todo[inline]{This introduction provides a good overview of the chapter structure, but should also include a brief statement about the overall performance of the model and whether it met the research objectives stated in earlier chapters. Consider adding a sentence or two that previews the main findings.}
 
-In this chapter. Prediction model results will be discussed. An quantitative comparison to other models is provided.
-
-To evaulate the quality of the model and its potential benefits.
-
-\section{Quantitative comparison to other models}
+\section{Quantitative comparison with other models}
 \label{sec:res-comparison}
 
+
+Based on the defined loss functions in Chapter \ref{ch:research}, we present the loss of the model. The losses represent error on prediction for an hour, calculated by dividing the loss by 24, instead of using the 24 values representing a full day.
+
+\todo[inline]{Provide more context for the evaluation metrics. Explain why these specific metrics were chosen and what they tell us about model performance in the context of charging demand prediction. Also, clarify what "Chapter research" refers to, as this seems to be an incorrect reference.}
+
+The losses can be seen in Table \ref{tab:losses-table}.
 % Please add the following required packages to your document preamble:
 
 \begin{table*}[h!]
-    \caption{Comparison of model performance metrics including Mean Absolute Error (MAE) and Mean Squared Error (MSE) with their normalized and power variants.}
-    \label{tab:my-table}
-    \begin{tabular}{p{3.3cm} p{1.5cm} p{1.8cm} p{2.2cm} p{1.5cm} p{1.8cm} p{2.2cm}}
+    \begin{tabular}{p{3cm} p{1.5cm} p{2cm} p{1.3cm} p{1.3cm} p{2cm} p{1.6cm} p{1.6cm}}
+
         \toprule
-        \textbf{Model}         & \textbf{MAE} & \textbf{MAE norm} & \textbf{MAE power} & \textbf{MSE} & \textbf{MSE norm} & \textbf{MSE power} \\
+
+        \textbf{Model name}          & \textbf{MAE}                         & \textbf{MSE}                         & \textbf{MAE norm profile}         & \textbf{MSE normal profile}       & \textbf{MSE total power}          & \textbf{MAE total power}             & \textbf{MSE mixture loss}         \\
+
         \midrule
-        ChargingProfileModel   & 86.3404      & 0.0447            & 1553.9763          & 33729.4410   & 0.0057            & 7748441.2767       \\
-        LinearRegression       & 107.9335     & 0.0962            & 2181.7242          & 41590.8896   & 2.9124            & 10658337.9148      \\
-        TrainAverageModel      & 87.9659      & 0.0435            & 1629.9461          & 33973.4273   & 0.0057            & 7853195.2634       \\
-        ValidationAverageModel & 87.9659      & 0.0435            & 1629.9461          & 33973.4273   & 0.0057            & 7853195.2634       \\
-        XGBoost                & 92.4132      & 0.0456            & 1639.3703          & 42282.8242   & 0.0065            & 7993035.6818       \\
+
+        Latent profiles NN           & $3.6717$                             & $1661.9267$                          & $0.0021$                          & $0.0003$                          & $3.5574\times10^{5}$              & $64.0718$                            & $3.4302$                          \\
+
+        Latent profiles NN (no data) & $3.7540$                             & $1667.8263$                          & $0.0020$                          & $0.0003$                          & $3.5677\times10^{5}$              & $66.3788$                            & $3.4138$                          \\
+
+        Train average                & $3.8964$                             & $1664.8744$                          & $0.0021$                          & $0.0003$                          & $3.5561\times10^{5}$              & $69.6754$                            & $3.4125$                          \\
+
+        Test average model           & $3.8964$                             & $1664.8744$                          & $0.0021$                          & $0.0003$                          & $3.5561\times10^{5}$              & $69.6754$                            & $3.4125$                          \\
+
+        Linear regression            & $4.2535$                             & $1823.4076$                          & $0.0060$                          & $0.1130$                          & $4.0771\times10^{5}$              & $79.0246$                            & $1130.0005$                       \\
+
+        XGBoost                      & $4.0460$                             & $2430.1903$                          & $0.0022$                          & $0.0004$                          & $3.9855\times10^{5}$              & $68.6162$                            & $4.1041$                          \\
+
+        \midrule
+
+        \textbf{Difference \%}       & $\textcolor{ForestGreen}{+6.1204\%}$ & $\textcolor{ForestGreen}{+0.1774\%}$ & $\textcolor{BrickRed}{-1.7618\%}$ & $\textcolor{BrickRed}{-0.5702\%}$ & $\textcolor{BrickRed}{-0.0377\%}$ & $\textcolor{ForestGreen}{+8.7459\%}$ & $\textcolor{BrickRed}{-0.5150\%}$ \\
+
         \bottomrule
     \end{tabular}
+    \caption{Table containing losses for several metrics. The last difference row provides percentage comparison between latent profiles NN model and train average.}
+    \label{tab:losses-table}
 \end{table*}
-\section{Qualitative latent profiles analysis}
+\todo[inline]{This table needs additional explanation. Clarify what "Latent profiles NN (no data)" refers to. Explain the meaning of the color coding in the Difference row. Also, consider using a larger font size as the tiny text is difficult to read.}
 
-\textit{Inspection of the outputed latent profiles in prague together with hypotethising if that at least makes sense. Show the latent profile contribution on the training dataset because it interesting to see what it learned from the data and not necesarily rating its prediction power.}
+From inspection of the table, it can be seen that the model did not provide better results. We hypothesize that the model derived most of its performance from learning to predict the average. We conclude that the current features we used for predicting power consumption did not help the model perform better.
 
-\section{Tool for visualisation of prediction results}
-To be able to inspect the prediction results in spatial context a tool was also developed with use of Streamlit\sidecite{StreamlitFasterWay2021}. The dashboard is in a form of a webapplication.
-It consists of two screens.
-First one allows inspection of overall model losses as visible in \ref{sec:res-comparison}. In bar charts and tabular formats. Where the bar chart shows all the types of losses relatively to each other.
-\begin{figure}
-    \includegraphics{data-dashboard-losses.png}
-    \caption[]{Data dashboard website showing bar chart with relative losses of the models}
-    \labfig{dasboard-all}
-\end{figure}
+\todo[inline]{This analysis is too brief and lacks depth. Expand on why the features might not have been helpful. Discuss potential reasons for the model's performance, such as data limitations, feature selection issues, or model architecture constraints. Also, analyze the performance differences across different metrics - why did the model perform better on some metrics than others?}
 
-The second screen displays table of all charging location together with day of the week and month. The individual rows of the table are selectable. When selection haapens location of the charger in map is shown and prediction from the model together with other models used for comparison is computed and its results are shown in a bar chart graph. Together with losses agains the original label $y$ value.
+\section{Latent profiles analysis}
+
+Although our model's prediction quality was not improved, the model learned to utilize the latent profiles. In this section, we examine how the model learned to utilize these profiles. To reiterate, we hypothesized that charging demand can be modeled as a mixture of $K$ charging profiles, and meaning could be derived from both the learned profiles and the prediction of probabilities per location.
 
 \begin{figure}
-    \includegraphics{data-dashboard-individual-predictions.png}
-    \caption[]{Data dashboard website showing table with data from validation data set with one selected row. Of which the prediction is computed from the main model and the other models for comparison.}
-    \labfig{dasboard-individual}
+    \includegraphics[width=0.7\textwidth]{learned-latent-profiles.png}
+    \caption{Latent profiles learned by our model}
+    \label{fig:learned-latent-profiles}
+    \todo[inline]{This figure would benefit from additional annotations and a more detailed caption. Label each profile (1-4) and explain what each profile might represent in terms of charging behavior patterns. Also, add axis labels to clarify what is being shown.}
 \end{figure}
+
+
+\begin{marginfigure}
+    \includegraphics{train_average.png}
+    \caption{Train dataset $\mathcal{T}$ labels average}
+    \label{fig:train_average}
+\end{marginfigure}
+
+\begin{marginfigure}
+    \includegraphics{average_probs.png}
+    \caption{Average predicted latent profile probabilities by our model on the train dataset.}
+    \label{fig:average_prob}
+\end{marginfigure}
+
+\begin{marginfigure}
+    \includegraphics{average_probs_test.png}
+    \caption{Average predicted latent profile probabilities by our model on the test dataset.}
+    \label{fig:average_prob_test}
+\end{marginfigure}
+
+We found that setting $K=4$ was the lowest possible number at which the train and validation loss could not be improved further.
+
+\todo[inline]{Explain the process of determining K=4 in more detail. What other values were tried? How did the performance change with different values of K? Consider including a plot showing validation loss vs. K value.}
+
+The learned profiles are visible in Figure \ref{fig:learned-latent-profiles}.
+
+The first profile closely corresponds to the average over the train dataset $\mathcal{T}$ labels (see Figure \ref{fig:train_average}). While also resembling the average power consumption of the ZSJ unit of "compact residential area" (see Figure \ref{fig:zsj-charging-impact}). A large part of the predictions for data from the test dataset utilize this profile (see Figure \ref{fig:average_prob_test}). We interpret this as our model falling back to simply giving the average of "compact residential area" chargers as its prediction\sidenote{This could be mitigated by stratified sampling}.
+
+\section{Power consumption}
+
+The second part of what our model predicts is the total power, of .This was already hypothesized in the beginning section, due to the absence of data about charger maximum power output. The comparison of true values versus predicted values can be seen in Figure \ref{fig:total-power-comparison}. This may be due to the absence on the chargers
+
+\begin{figure}[h!]
+    \includegraphics{total_power_comparison.png}
+    \caption{Comparison of true total power (x axis) and our prediction (y axis)}
+    \label{fig:total-power-comparison}
+    \todo[inline]{This figure needs more context and analysis. Add a reference line (y=x) to show what perfect prediction would look like. Discuss the pattern of errors - is the model systematically over- or under-predicting? Are there clusters or outliers that provide insights into where the model struggles most?}
+\end{figure}
+
+\todo[inline]{This section is too brief for an important aspect of the model. Expand the analysis to quantify how far off the predictions are and discuss potential approaches to improve total power prediction despite the lack of charger capability data.}
+
+\section{Conclusion}
+
+The takeaway from our findings is that the data used for the model were not sufficient and would require gathering a larger dataset of features. Potential additional data sources will be discussed in the conclusion. This could also be attributed to the fact that the model did not manage to fit the training dataset well.
+
+\todo[inline]{This conclusion is too brief and lacks depth. Expand it to summarize all key findings from the results chapter, not just the limitations. Discuss what was learned from the latent profiles analysis, even if the overall performance was not as good as hoped. Also, provide a more nuanced analysis of why the model didn't perform well - was it due to insufficient data, inappropriate features, model architecture limitations, or a combination of factors? Finally, connect these findings back to the research objectives stated in earlier chapters.}

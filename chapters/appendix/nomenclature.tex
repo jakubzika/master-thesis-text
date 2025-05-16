@@ -1,0 +1,58 @@
+% Nomenclature for mathematical symbols used in the thesis
+
+% Charging Stations and Infrastructure
+\nomenclature{$S = \{s_1, s_2, ..., s_m\}$}{Set of all charging stations}
+\nomenclature{$l_s \in \mathbb{R}^2$}{Geographic coordinates (location) of charging station $s$}
+\nomenclature{$C_s = \{c_1^s, c_2^s, ..., c_{n_s}^s\}$}{Set of connectors at charging station $s$}
+\nomenclature{$\text{id}^{c,s}$}{Unique identifier for connector $c$ at station $s$}
+\nomenclature{$l: S \rightarrow \mathbb{R}^2$}{Location function mapping stations to geographic coordinates}
+
+% Charging Sessions
+\nomenclature{$V_{c,s} = \{v_1^{c,s}, v_2^{c,s}, ..., v_{k_{c,s}}^{c,s}\}$}{Set of charging sessions for connector $c$ at station $s$}
+\nomenclature{$v_i^{c,s} = (t_{\text{start},i}^{c,s}, t_{\text{end},i}^{c,s}, p_i^{c,s})$}{Charging session with start time, end time, and energy consumed}
+\nomenclature{$t_{\text{start},i}^{c,s}$}{Start time of charging session $i$ at connector $c$ of station $s$}
+\nomenclature{$t_{\text{end},i}^{c,s}$}{End time of charging session $i$ at connector $c$ of station $s$}
+\nomenclature{$p_i^{c,s}$}{Energy consumed during charging session $i$ at connector $c$ of station $s$}
+
+% Power Consumption Metrics
+\nomenclature{$h^{s,c}_t$}{Hourly power consumption at time $t$ for connector $c$ at station $s$}
+\nomenclature{$\mu$}{Function to measure length of time interval, $\mu((a;b)) \mapsto b - a$}
+\nomenclature{$H_d^{c,s}$}{Daily hourly power consumption for connector $c$ at station $s$ on day $d$}
+
+% Machine Learning Model
+\nomenclature{$f_{\theta}: X \rightarrow Y$}{Model function with parameters $\theta$}
+\nomenclature{$X \in \mathbb{R}^M$}{Set of all feature vectors}
+\nomenclature{$Y \in \mathbb{R}^{24}$}{Set of all targets (24-dimensional vectors representing hourly consumption)}
+\nomenclature{$\mathit{loss_{total}}(f,\theta)$}{Total loss function for model training}
+\nomenclature{$a_x = \mathit{loss_{power}}$}{Power loss component}
+\nomenclature{$b_y = \mathit{loss_{norm}}$}{Normalization loss component}
+\nomenclature{$\alpha, \beta$}{Loss weighting parameters}
+
+% Feature Vectors
+\nomenclature{$x_i$}{Feature vector for sample $i$}
+\nomenclature{$s_i$}{Spatial features vector for sample $i$}
+\nomenclature{$t_i$}{Temporal features vector for sample $i$}
+\nomenclature{$s_i^j$}{$j$-th spatial feature for sample $i$}
+\nomenclature{$t_i^j$}{$j$-th temporal feature for sample $i$}
+
+% Neural Network Architecture
+\nomenclature{$R \in \mathbb{R}^{24 \times K}$}{Matrix of latent profiles}
+\nomenclature{$K$}{Number of latent profiles (hyperparameter)}
+\nomenclature{$\text{Linear}^n_m(x) = W x + b$}{Linear transformation from $\mathbb{R}^n$ to $\mathbb{R}^m$}
+\nomenclature{$W \in \mathbb{R}^{m \times n}$}{Weight matrix for linear transformation}
+\nomenclature{$b \in \mathbb{R}^m$}{Bias vector for linear transformation}
+\nomenclature{$\text{LatentVec}_K = R$}{Latent vectors (embedding layer)}
+\nomenclature{$f(x) = \ln(1 + e^x)$}{Softplus activation function}
+\nomenclature{$\text{Norm}(x) = \frac{x}{\|x\|_2}$}{L2 normalization function}
+\nomenclature{$\text{LReLU}(x)$}{Leaky ReLU activation function}
+\nomenclature{$\text{Combine}(R,p) = \sum_{i=1}^K p_i \, R_i$}{Function to combine latent profiles}
+
+% Datasets
+\nomenclature{$\mathcal{T}$}{Training dataset}
+\nomenclature{$\mathcal{S}$}{Test dataset}
+\nomenclature{$\mathcal{V}$}{Validation dataset}
+
+% Spatial Analysis
+\nomenclature{$\textit{Distance}$}{Distance function between points}
+\nomenclature{$\textit{Importance}_K(a,b)$}{Importance factor between points $a$ and $b$ with parameter $K$}
+\nomenclature{$\text{Density}(a,f)$}{Density of feature $f$ in polygon $a$}

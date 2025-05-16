@@ -23,7 +23,7 @@
 \documentclass[
 	a4paper, % Page size
 	fontsize=9pt, % Base font size
-	twoside=true, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
+	twoside=false, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
 	%open=any, % If twoside=true, uncomment this to force new chapters to start on any page, not only on right (odd) pages
 	%chapterentrydots=true, % Uncomment to output dots from the chapter name to the page number in the table of contents
 	numbers=noenddot, % Comment to output dots after chapter numbers; the most common values for this option are: enddot, noenddot and auto (see the KOMAScript documentation for an in-depth explanation)
@@ -46,6 +46,7 @@
 \usepackage{booktabs}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage[dvipsnames]{xcolor}
 % \usepackage{showframe} % Uncomment to show boxes around the text area, margin, header and footer
 %\usepackage{showlabels} % Uncomment to output the content of \label commands to the document where they are used
 
@@ -56,8 +57,9 @@
 
 \addbibresource{EV.bib}
 \addbibresource{ev-old.bib} 
-\addbibresource{Matsim.bib} 
+\addbibresource{Matsim.bib}
 \addbibresource{Libraries:software.bib} 
+\addbibresource{soft-science.bib}
 
 % Load mathematical packages for theorems and related environments
 \usepackage[framed=true]{kaotheorems}
@@ -184,17 +186,29 @@
 \input{chapters/01_introduction.tex}
 \input{chapters/02_electromobility.tex}
 \input{chapters/03_related-research.tex}
-\input{chapters/04_data.tex}
-\input{chapters/05_research.tex}
+% \input{chapters/04_data.tex}
+\input{chapters/04_data_ai_corrected.tex}
+% \input{chapters/05_research.tex}
+\input{chapters/05_research_ai_corrected.tex}
 \input{chapters/06_results.tex}
 \input{chapters/07_conclusion.tex}
+% \input{chapters/07_conclusion_ai_corrected.tex}
+
 
 \appendix % From here onwards, chapters are numbered with letters, as is the appendix convention
 
 
+\addpart{Appendix}
+
+\pagelayout{wide} % No margins
 \backmatter % Denotes the end of the main document content
 \setchapterstyle{plain} % Output plain chapters from this point onwards
+% \setchapterstyle{lines}
+\labch{appendix}
+% \blinddocument
 
+\input{chapters/appendix/visualization_tool.tex}
+\input{chapters/appendix/data_large_figures.tex}
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
@@ -225,6 +239,8 @@
 
 \defbibnote{bibnote}{Here are the references in citation order.\par\bigskip} % Prepend this text to the bibliography
 \printbibliography[heading=bibintoc, title=Bibliography, prenote=bibnote] % Add the bibliography heading to the ToC, set the title of the bibliography and output the bibliography note
+
+\input{chapters/appendix/nomenclature.tex}
 
 \renewcommand{\nomname}{Notation} % Rename the default 'Nomenclature'
 \renewcommand{\nompreamble}{The next list describes several symbols that will be later used within the body of the document.} % Prepend this text to the nomenclature
