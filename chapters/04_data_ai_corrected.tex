@@ -9,8 +9,6 @@
 
 This chapter introduces the data sources and processing methods that form the foundation of our research on electric vehicle charging demand. We begin by classifying the types of data used in our analysis and explaining their relevance to the research problem. We then describe the charging infrastructure data, including chargers and charging sessions, and detail how we transform this raw data into the target variables for our predictive model. Finally, we present the spatial and contextual data sources that provide the features for our model, along with the transformations applied to prepare them for analysis.
 
-\todo[inline]{This introduction provides a good overview of the chapter structure, but should also include a brief statement about data collection methodology, data limitations, and ethical considerations regarding data usage.}
-
 The data landscape presented here directly supports the modeling approach described in Chapter \ref{ch:problem}, where these processed datasets serve as inputs to our neural network with latent profiles.
 
 \begin{kaobox}[frametitle=Types of data]
@@ -28,24 +26,24 @@ The data landscape presented here directly supports the modeling approach descri
 
 \begin{figure}
     \includegraphics[width=1\textwidth]{data/charger-ontology.png}
-    \caption{A charging ontology showing the relationships between key entities in the EV charging ecosystem}
+    \caption{A charging ontology showing the relationships between entities in the EV charging ecosystem}
     \label{fig:charging-ontology}
 \end{figure}
 
 
-To introduce our problem domain and establish a framework for connecting the various data elements, we present a simple charger ontology \sidenote{Ontology describes subjects of some system and the ways they are related to each other.}. Inspired by the AURORAL EV-charger Ontology \sidecite{OntologyDocumentationGenerated}, this ontology helps clarify the relationships between key entities in the EV charging ecosystem. The model aligns with the data obtained from PRE (Prague's electricity distribution company).
+To introduce our problem domain and establish a framework for connecting the various data elements, we present a simple charger ontology \sidenote{Ontology describes subjects of some system and the ways they are related to each other.}. Inspired by the AURORAL EV-charger Ontology \sidecite{OntologyDocumentationGenerated}, this ontology helps clarify the relationships between entities in the EV charging ecosystem. The model aligns with the data obtained from PRE (Prague's electricity distribution company).
 
 Below is a description of the individual components of the charging ontology as illustrated in Figure \ref{fig:charging-ontology}.
 
 \begin{itemize}
     \setlength\itemsep{1em}
-    \item \textbf{\acrlong{CS}} (as visible in Figure \ref{fig:charging-station}) is equipment that connects an \acrshort{EV} to a source of electricity to recharge them. A charging station typically consists of physical infrastructure including power conversion hardware, connectivity modules, authentication systems, and user interfaces. Charging stations vary in their power delivery capabilities, ranging from slow AC chargers (3.7-22 kW) commonly found in residential and workplace settings to fast DC chargers (50-350+ kW) deployed in public corridors and commercial hubs. Within our dataset, charging stations from PRE's network predominantly consist of public AC and DC installations distributed throughout Prague's urban and suburban areas.
+    \item \textbf{\acrlong{CS}} (as visible in Figure \ref{fig:charging_station}) is equipment that connects an \acrshort{EV} to a source of electricity to recharge them. A charging station typically consists of physical infrastructure including power conversion hardware, connectivity modules, authentication systems, and user interfaces. Charging stations vary in their power delivery capabilities, ranging from slow AC chargers (3.7-22 kW) commonly found in residential and workplace settings to fast DC chargers (50-350+ kW) deployed in public corridors and commercial hubs. Within our dataset, charging stations from PRE's network predominantly consist of public AC and DC installations distributed throughout Prague's urban and suburban areas.
 
           \begin{marginfigure}
               \centering
               \includegraphics[width=0.42\textwidth]{data/charger-small.png}
               \caption{Picture of \acrlong{CS}. It has one connector on each of its sides. One of which has charging cable attached.}
-              \label{fig:charging-station}
+              \label{fig:charging_station}
           \end{marginfigure}
           \vspace{3.5mm}
           Formally, we define the set of all charging stations as $S = \{s_1, s_2, ..., s_m\}$, where each station $s \in S$ is associated with a location $l_s \in \mathbb{R}^2$ representing its geographic coordinates.
@@ -93,9 +91,7 @@ This simplification is illustrated in Figure \ref{fig:charging-assumption}, whic
 
 \subsection{Charging Sessions Dataset}
 
-PRE provided us with charging session data collected from X charging stations across Prague. We collected approximately Y individual charging sessions spanning from January 2022 until June 2024. For each session, we recorded the following information:
-
-\todo[inline]{Replace the placeholder values X and Y with the actual numbers of charging stations and charging sessions in your dataset. Providing specific details about your dataset size is important for reproducibility and understanding the scope of your analysis.}
+PRE provided us with charging session data collected from \textbf{907} charging stations across Prague. We collected \textbf{385,404} individual charging sessions spanning  \textbf{January 2022 - June 2024}. For each session, the following information is available:
 
 \begin{itemize}
     \item \textbf{Charger ID}: A unique identifier assigned by PRE to each charger and connector
@@ -111,7 +107,6 @@ We identified the precise location of chargers using supporting documentation fr
 \begin{figure}[]
     \includegraphics{data/all-chargers.png}
     \caption{Map of all PRE \acrlong{CS} in Prague for which we have available \acrlong{CSS}. See Figure \ref{fig-large:all-chargers} for larger image.}
-    \todo[inline]{This figure would benefit from additional context in the caption, such as explaining the distribution pattern of charging stations and how it relates to urban density or other relevant factors. Also, ensure that Figure \ref{fig-large:all-chargers} is properly referenced in the appendix.}
 \end{figure}
 
 \begin{marginfigure}
@@ -139,8 +134,6 @@ We identified the precise location of chargers using supporting documentation fr
 \subsection{Transformations}
 
 We are interested in obtaining the power demand of chargers with hourly granularity. This allows us to analyze temporal patterns in charging behavior and develop predictive models for any \acrlong{CP} at any \acrlong{CS}.
-
-\todo[inline]{Explain why hourly granularity was chosen over other potential time intervals (e.g., 15-minute intervals or daily aggregation). Discuss the trade-offs between temporal resolution and model complexity.}
 
 We derive \acrlong{HPC} $h^{s,c}_t$, where $s$ specifies the \acrlong{CS}, $c$ identifies the \acrlong{CP} at the station, and $t$ represents the hour. The allowed range of $t$ is limited by the start of the first session until the end time of the last session.
 
@@ -208,7 +201,7 @@ To summarize, the data derived from \acrlong{CSS} that will be used further in t
 
 \section{Basic settlement unit (ZSJ)}
 
-The spatial context of charging stations influences their usage patterns. To capture this context effectively, we incorporate data from census based on Basic Settlement Units (ZSJ), which provide demographic and urban characteristic information at a fine-grained spatial resolution.
+The spatial context of charging stations influences their usage patterns. As an attempt to capture this context we incorporate data from census based on Basic Settlement Units (ZSJ), which provide demographic and urban characteristic information at a fine-grained spatial resolution.
 
 Basic Settlement Units (ZSJ) are territorial elements defined by the Czech Statistical Office for statistical and administrative purposes. They represent parts of municipalities with distinct spatial, technical, and urban planning characteristics or groupings of residential or recreational buildings. ZSJ units denote city districts, small villages, or settlements that would otherwise be joined to their belonging municipality \sidecite{ZakladniSidelniJednotka}.
 
@@ -226,11 +219,11 @@ Originally created as basic presentation units for census data, ZSJ units now se
 \end{marginfigure}
 
 
-The ZSJ dataset provides contextual information that could explain variations in charging demand across different locations. By linking charging stations to their containing ZSJ units, we can incorporate demographic and urban characteristics into our predictive model. The effect of ZSJ type on the average power consumption of chargers can be seen in Figure \ref{fig:zsj-charging-impact}.
+The ZSJ dataset provides contextual information that might explain variations in charging demand across different locations. By linking charging stations to their containing ZSJ units, we can incorporate demographic and urban characteristics into our predictive model. The effect of ZSJ type on the average power consumption of chargers can be seen in Figure \ref{fig:zsj-charging-impact}.
 
 \subsection{Description}
 
-The ZSJ dataset provides the following useful data for each area:
+The ZSJ dataset contains the following data for each area:
 
 \begin{itemize}
     \item \textbf{Id}: A unique identifier assigned to each ZSJ unit. This code allows for unambiguous identification of each basic settlement unit within the national registry system.
@@ -252,13 +245,35 @@ The ZSJ dataset provides the following useful data for each area:
 
 The primary transformation performed on the ZSJ data is the conversion of absolute counts to density measures. This is achieved by dividing the quantitative field values (population, number of addresses) of each ZSJ by the area of its geometry polygon. This normalization allows for more meaningful comparisons between ZSJ units of different sizes and better reflects the intensity of human activity in each area.
 
+\section{People Mobility}
+
+We hypothesize that human mobility patterns could influence EV charging demand. As it may be more probable, that the charging demand may be due to inter-municipality peoples commute. Our model incorporates mobility data derived from mobile phone positioning information. Slice of the data can be seen at Figure \ref{fig-large:people-mobility}.
+
+\subsection{Description}
+
+The mobility data was sourced from the Prague Institute of Planning and Development (IPR). This dataset uses anonymized mobile phone connections to cellular towers to track movement patterns.
+
+The data is aggregated into origin-destination matrices for privacy preservation. A person's origin is defined as the location where the person (their mobile device) spent the night and morning hours. The destination is where the person spent the majority of daytime hours.
+
+The dataset is structured as a matrix where rows represent origin areas (where people commute from) and columns represent destination areas (where people commute to).
+
+\subsection{Transformations}
+
+We used data from March 2022 for our analysis. The original dataset included 1,443 municipalities.
+
+For each municipality within Prague, we computed two metrics:
+1. The number of people commuting into the municipality from other areas within Prague
+2. The number of people commuting into the municipality from outside Prague's boundaries
+
+\marginnote{It would be beneficial to also work with the distance from the municipalities. Because if people commute from longer distance with EVs their demand to charge could be larger.}
+
+This transformation reduced the dimensionality of the data while preserving some of the information about commuting patterns that might influence charging demand.
+
 \section{Open Street Map}
 
 \acrfull{POI} are points on a map with relevance to the domain of study. These can include buildings, shops, parking spots, landmarks, and other features that might influence charging behavior.
 
 Previous research \sidecite{hechtGlobalElectricVehicle2024}\sidecite{dongElectricVehicleCharging2019} has identified statistically significant relationships between POIs and charging demand using linear regression. In particular, \cite{hechtGlobalElectricVehicle2024} extracted POI data from \acrfull{OSM}, which we also utilize in our research.
-
-\todo[inline]{Discuss the potential limitations of using OSM data, such as completeness, accuracy, and currency issues that might affect your analysis. Consider comparing OSM data quality in Prague with other potential data sources.}
 
 \acrlong{OSM} \sidecite{OpenStreetMap} is a crowdsourced project aimed at constructing, maintaining, and openly providing map data. The data are available through map applications for end users for purposes like navigation, or can be exported for computational analytics.
 
@@ -278,9 +293,7 @@ For this research, we extract specific POI types relevant to charging behavior. 
     \item \textbf{road}: Highways, walkways, bikelanes, and other transportation infrastructure
 \end{itemize}
 
-\subsection{Transformations - Buildings}
 
-Building data from OSM provides information about the built environment surrounding charging stations. We extract building footprints and their attributes (height, type, function) to characterize the urban context of each charging location. This information helps capture the relationship between building density, urban form, and charging demand.
 
 \subsection{Transformations - Amenities}
 
@@ -311,10 +324,8 @@ To extract a comprehensive set of points of interest, we used the software libra
 
 In this section, we describe the methods used to link spatial data to charging points. These transformations are essential for creating the feature vectors used in our predictive model, as detailed in Chapter \ref{ch:problem}.
 
-\todo[inline]{This section would benefit from a discussion of alternative spatial feature engineering approaches that were considered but not implemented, along with the rationale for your final choices. Also, consider adding a summary table that lists all spatial features derived and their expected relationship with charging demand based on literature or domain knowledge.}
-
 \begin{itemize}
-    \item[] \textbf{Point in polygon} - Given a point and a set of mutually disjoint areas with features, this method assigns the features of the area containing the point to that point. For example, we assign ZSJ demographic characteristics to charging stations based on the ZSJ polygon in which they are located. This method may be unreliable when the point is near a boundary with other polygons/areas. A more precise solution would be spatial interpolation \sidenote{\url{https://r-spatial.org/book/12-Interpolation.html}}, but for our purposes, the point-in-polygon approach provides sufficient accuracy.
+    \item[] \textbf{Point in polygon} - Given a point and a set of mutually disjoint areas with features, this method assigns the features of the area containing the point to that point. For example, we assign ZSJ demographic characteristics to charging stations based on the ZSJ polygon in which they are located. This method may be unreliable when the point is near a boundary with other polygons/areas. A more precise solution would be spatial interpolation\sidenote{\url{https://r-spatial.org/book/12-Interpolation.html}}.
 
     \item[] \textbf{Nearest neighbors by radius} - Given a point $k$ and a set of points $\mathcal{P}$, this method returns the subset of $\mathcal{P}$ whose distance from $k$ is less than a threshold $K$. It also stores the distance of each point to $k$. The actual distance function depends on the coordinate system used.
           \[ \text{Distance}: \mathcal{P} \times \mathcal{P} \rightarrow \mathbb{R}^+  \]

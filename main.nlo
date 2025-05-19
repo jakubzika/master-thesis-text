@@ -1,41 +1,41 @@
-\nomenclatureentry{a$S = \{s_1, s_2, ..., s_m\}$@[{$S = \{s_1, s_2, ..., s_m\}$}]\begingroup Set of all charging stations\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$l_s \in \mathbb{R}^2$@[{$l_s \in \mathbb{R}^2$}]\begingroup Geographic coordinates (location) of charging station $s$\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$C_s = \{c_1^s, c_2^s, ..., c_{n_s}^s\}$@[{$C_s = \{c_1^s, c_2^s, ..., c_{n_s}^s\}$}]\begingroup Set of connectors at charging station $s$\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$\text{id}^{c,s}$@[{$\text{id}^{c,s}$}]\begingroup Unique identifier for connector $c$ at station $s$\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$l: S \rightarrow \mathbb{R}^2$@[{$l: S \rightarrow \mathbb{R}^2$}]\begingroup Location function mapping stations to geographic coordinates\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$V_{c,s} = \{v_1^{c,s}, v_2^{c,s}, ..., v_{k_{c,s}}^{c,s}\}$@[{$V_{c,s} = \{v_1^{c,s}, v_2^{c,s}, ..., v_{k_{c,s}}^{c,s}\}$}]\begingroup Set of charging sessions for connector $c$ at station $s$\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$v_i^{c,s} = (t_{\text{start},i}^{c,s}, t_{\text{end},i}^{c,s}, p_i^{c,s})$@[{$v_i^{c,s} = (t_{\text{start},i}^{c,s}, t_{\text{end},i}^{c,s}, p_i^{c,s})$}]\begingroup Charging session with start time, end time, and energy consumed\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$t_{\text{start},i}^{c,s}$@[{$t_{\text{start},i}^{c,s}$}]\begingroup Start time of charging session $i$ at connector $c$ of station $s$\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$t_{\text{end},i}^{c,s}$@[{$t_{\text{end},i}^{c,s}$}]\begingroup End time of charging session $i$ at connector $c$ of station $s$\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$p_i^{c,s}$@[{$p_i^{c,s}$}]\begingroup Energy consumed during charging session $i$ at connector $c$ of station $s$\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$h^{s,c}_t$@[{$h^{s,c}_t$}]\begingroup Hourly power consumption at time $t$ for connector $c$ at station $s$\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$\mu$@[{$\mu$}]\begingroup Function to measure length of time interval, $\mu((a;b)) \mapsto b - a$\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$H_d^{c,s}$@[{$H_d^{c,s}$}]\begingroup Daily hourly power consumption for connector $c$ at station $s$ on day $d$\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$f_{\theta}: X \rightarrow Y$@[{$f_{\theta}: X \rightarrow Y$}]\begingroup Model function with parameters $\theta$\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$X \in \mathbb{R}^M$@[{$X \in \mathbb{R}^M$}]\begingroup Set of all feature vectors\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$Y \in \mathbb{R}^{24}$@[{$Y \in \mathbb{R}^{24}$}]\begingroup Set of all targets (24-dimensional vectors representing hourly consumption)\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$\mathit{loss_{total}}(f,\theta)$@[{$\mathit{loss_{total}}(f,\theta)$}]\begingroup Total loss function for model training\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$a_x = \mathit{loss_{power}}$@[{$a_x = \mathit{loss_{power}}$}]\begingroup Power loss component\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$b_y = \mathit{loss_{norm}}$@[{$b_y = \mathit{loss_{norm}}$}]\begingroup Normalization loss component\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$\alpha, \beta$@[{$\alpha, \beta$}]\begingroup Loss weighting parameters\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$x_i$@[{$x_i$}]\begingroup Feature vector for sample $i$\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$s_i$@[{$s_i$}]\begingroup Spatial features vector for sample $i$\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$t_i$@[{$t_i$}]\begingroup Temporal features vector for sample $i$\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$s_i^j$@[{$s_i^j$}]\begingroup $j$-th spatial feature for sample $i$\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$t_i^j$@[{$t_i^j$}]\begingroup $j$-th temporal feature for sample $i$\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$R \in \mathbb{R}^{24 \times K}$@[{$R \in \mathbb{R}^{24 \times K}$}]\begingroup Matrix of latent profiles\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$K$@[{$K$}]\begingroup Number of latent profiles (hyperparameter)\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$\text{Linear}^n_m(x) = W x + b$@[{$\text{Linear}^n_m(x) = W x + b$}]\begingroup Linear transformation from $\mathbb{R}^n$ to $\mathbb{R}^m$\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$W \in \mathbb{R}^{m \times n}$@[{$W \in \mathbb{R}^{m \times n}$}]\begingroup Weight matrix for linear transformation\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$b \in \mathbb{R}^m$@[{$b \in \mathbb{R}^m$}]\begingroup Bias vector for linear transformation\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$\text{LatentVec}_K = R$@[{$\text{LatentVec}_K = R$}]\begingroup Latent vectors (embedding layer)\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$f(x) = \ln(1 + e^x)$@[{$f(x) = \ln(1 + e^x)$}]\begingroup Softplus activation function\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$\text{Norm}(x) = \frac{x}{\|x\|_2}$@[{$\text{Norm}(x) = \frac{x}{\|x\|_2}$}]\begingroup L2 normalization function\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$\text{LReLU}(x)$@[{$\text{LReLU}(x)$}]\begingroup Leaky ReLU activation function\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$\text{Combine}(R,p) = \sum_{i=1}^K p_i \, R_i$@[{$\text{Combine}(R,p) = \sum_{i=1}^K p_i \, R_i$}]\begingroup Function to combine latent profiles\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$\mathcal{T}$@[{$\mathcal{T}$}]\begingroup Training dataset\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$\mathcal{S}$@[{$\mathcal{S}$}]\begingroup Test dataset\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$\mathcal{V}$@[{$\mathcal{V}$}]\begingroup Validation dataset\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$\textit{Distance}$@[{$\textit{Distance}$}]\begingroup Distance function between points\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$\textit{Importance}_K(a,b)$@[{$\textit{Importance}_K(a,b)$}]\begingroup Importance factor between points $a$ and $b$ with parameter $K$\nomeqref {0}|nompageref}{49}
-\nomenclatureentry{a$\text{Density}(a,f)$@[{$\text{Density}(a,f)$}]\begingroup Density of feature $f$ in polygon $a$\nomeqref {0}|nompageref}{49}
+\nomenclatureentry{a$S = \{s_1, s_2, ..., s_m\}$@[{$S = \{s_1, s_2, ..., s_m\}$}]\begingroup Set of all charging stations\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$l_s \in \mathbb{R}^2$@[{$l_s \in \mathbb{R}^2$}]\begingroup Geographic coordinates (location) of charging station $s$\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$C_s = \{c_1^s, c_2^s, ..., c_{n_s}^s\}$@[{$C_s = \{c_1^s, c_2^s, ..., c_{n_s}^s\}$}]\begingroup Set of connectors at charging station $s$\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$\text{id}^{c,s}$@[{$\text{id}^{c,s}$}]\begingroup Unique identifier for connector $c$ at station $s$\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$l: S \rightarrow \mathbb{R}^2$@[{$l: S \rightarrow \mathbb{R}^2$}]\begingroup Location function mapping stations to geographic coordinates\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$V_{c,s} = \{v_1^{c,s}, v_2^{c,s}, ..., v_{k_{c,s}}^{c,s}\}$@[{$V_{c,s} = \{v_1^{c,s}, v_2^{c,s}, ..., v_{k_{c,s}}^{c,s}\}$}]\begingroup Set of charging sessions for connector $c$ at station $s$\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$v_i^{c,s} = (t_{\text{start},i}^{c,s}, t_{\text{end},i}^{c,s}, p_i^{c,s})$@[{$v_i^{c,s} = (t_{\text{start},i}^{c,s}, t_{\text{end},i}^{c,s}, p_i^{c,s})$}]\begingroup Charging session with start time, end time, and energy consumed\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$t_{\text{start},i}^{c,s}$@[{$t_{\text{start},i}^{c,s}$}]\begingroup Start time of charging session $i$ at connector $c$ of station $s$\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$t_{\text{end},i}^{c,s}$@[{$t_{\text{end},i}^{c,s}$}]\begingroup End time of charging session $i$ at connector $c$ of station $s$\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$p_i^{c,s}$@[{$p_i^{c,s}$}]\begingroup Energy consumed during charging session $i$ at connector $c$ of station $s$\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$h^{s,c}_t$@[{$h^{s,c}_t$}]\begingroup Hourly power consumption at time $t$ for connector $c$ at station $s$\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$\mu$@[{$\mu$}]\begingroup Function to measure length of time interval, $\mu((a;b)) \mapsto b - a$\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$H_d^{c,s}$@[{$H_d^{c,s}$}]\begingroup Daily hourly power consumption for connector $c$ at station $s$ on day $d$\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$f_{\theta}: X \rightarrow Y$@[{$f_{\theta}: X \rightarrow Y$}]\begingroup Model function with parameters $\theta$\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$X \in \mathbb{R}^M$@[{$X \in \mathbb{R}^M$}]\begingroup Set of all feature vectors\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$Y \in \mathbb{R}^{24}$@[{$Y \in \mathbb{R}^{24}$}]\begingroup Set of all targets (24-dimensional vectors representing hourly consumption)\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$\mathit{loss_{total}}(f,\theta)$@[{$\mathit{loss_{total}}(f,\theta)$}]\begingroup Total loss function for model training\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$a_x = \mathit{loss_{power}}$@[{$a_x = \mathit{loss_{power}}$}]\begingroup Power loss component\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$b_y = \mathit{loss_{norm}}$@[{$b_y = \mathit{loss_{norm}}$}]\begingroup Normalization loss component\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$\alpha, \beta$@[{$\alpha, \beta$}]\begingroup Loss weighting parameters\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$x_i$@[{$x_i$}]\begingroup Feature vector for sample $i$\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$s_i$@[{$s_i$}]\begingroup Spatial features vector for sample $i$\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$t_i$@[{$t_i$}]\begingroup Temporal features vector for sample $i$\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$s_i^j$@[{$s_i^j$}]\begingroup $j$-th spatial feature for sample $i$\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$t_i^j$@[{$t_i^j$}]\begingroup $j$-th temporal feature for sample $i$\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$R \in \mathbb{R}^{24 \times K}$@[{$R \in \mathbb{R}^{24 \times K}$}]\begingroup Matrix of latent profiles\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$K$@[{$K$}]\begingroup Number of latent profiles (hyperparameter)\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$\text{Linear}^n_m(x) = W x + b$@[{$\text{Linear}^n_m(x) = W x + b$}]\begingroup Linear transformation from $\mathbb{R}^n$ to $\mathbb{R}^m$\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$W \in \mathbb{R}^{m \times n}$@[{$W \in \mathbb{R}^{m \times n}$}]\begingroup Weight matrix for linear transformation\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$b \in \mathbb{R}^m$@[{$b \in \mathbb{R}^m$}]\begingroup Bias vector for linear transformation\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$\text{LatentVec}_K = R$@[{$\text{LatentVec}_K = R$}]\begingroup Latent vectors (embedding layer)\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$f(x) = \ln(1 + e^x)$@[{$f(x) = \ln(1 + e^x)$}]\begingroup Softplus activation function\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$\text{Norm}(x) = \frac{x}{\|x\|_2}$@[{$\text{Norm}(x) = \frac{x}{\|x\|_2}$}]\begingroup L2 normalization function\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$\text{LReLU}(x)$@[{$\text{LReLU}(x)$}]\begingroup Leaky ReLU activation function\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$\text{Combine}(R,p) = \sum_{i=1}^K p_i \, R_i$@[{$\text{Combine}(R,p) = \sum_{i=1}^K p_i \, R_i$}]\begingroup Function to combine latent profiles\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$\mathcal{T}$@[{$\mathcal{T}$}]\begingroup Training dataset\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$\mathcal{S}$@[{$\mathcal{S}$}]\begingroup Test dataset\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$\mathcal{V}$@[{$\mathcal{V}$}]\begingroup Validation dataset\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$\textit{Distance}$@[{$\textit{Distance}$}]\begingroup Distance function between points\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$\textit{Importance}_K(a,b)$@[{$\textit{Importance}_K(a,b)$}]\begingroup Importance factor between points $a$ and $b$ with parameter $K$\nomeqref {0}|nompageref}{50}
+\nomenclatureentry{a$\text{Density}(a,f)$@[{$\text{Density}(a,f)$}]\begingroup Density of feature $f$ in polygon $a$\nomeqref {0}|nompageref}{50}

@@ -1,38 +1,16 @@
 \pagelayout{margin}
 \setchapterstyle{kao}
 \setchapterpreamble[u]{\margintoc}
+
 \chapter{Related research}
 
-\todo[inline]{The introduction to this chapter needs significant improvement. The current text is informal and contains grammatical errors. Rewrite to provide a clear, structured overview of the literature review approach and organization. Use complete sentences and academic language.}
+This chapter reviews literature on electric vehicle (EV) charging demand prediction and related methodologies, providing context for our research on charging patterns in Prague.
 
-This section mentions relevant literature that focuses either on the very same issue. Or topics close to predicting EV charger demand. There are not that many papers focusing on our specific issue however there is a lot of knowledge ihdden inside of them. The papers analyzed in this chapter provide insight into how similar issues were tackled. And on what does the research focus on.
+We examine four main research areas: data-driven approaches to understanding charging behavior, simulation-based methodologies for predicting demand, stochastic modeling approaches capturing probabilistic behavior, and research specific to the Czech context. The review highlights spatial and temporal dimensions of charging demand, data requirements of different approaches, and trade-offs between model complexity and accuracy.
 
-
-First, from an outside perspective. Issues and topic of the papers will be explored. What outcome were they focused on. And then an inside look, into what research approaches they took and what methods were used.
-
-Because this is spatial data science. Most of the papers are very practical in a sense that they work with real datasets. And each country and even city has different data gathering culture and data availabilty. The research is tightly connected to what data is available. No relevant paper for our issue was found focusing on Prague.
-
-\todo[inline]{This chapter should begin with a clear explanation of your literature review methodology - how papers were selected, what databases were searched, what inclusion/exclusion criteria were used, and how many papers were ultimately reviewed.}
+This analysis identifies gaps in existing research regarding Prague's urban environment and informs our methodological approach.
 
 
-\section{Issue addressed}
-
-\todo[inline]{This section title should be more descriptive, such as "Key Research Areas in EV Charging Literature". The current bullet list should be expanded into proper paragraphs that explain each research area and how they relate to your work.}
-
-\begin{itemize}
-    \item EV charger demand prediction
-    \item EV charger use anaylsis \todo[inline]{Spelling error: "anaylsis" should be "analysis"}
-    \item Charging infrastructure planning and optimization
-    \item Digital twin
-\end{itemize}
-
-\section{Research approaches}
-
-\todo[inline]{This section is extremely underdeveloped and informal. It should be completely rewritten to provide a comprehensive overview of the different methodological approaches in the literature, with proper citations and explanations of how each approach contributes to the field.}
-
-Starting from simple statistics. Then menitoning agent simulations. And end with ML.
-
-Research applies itself to all sorts of EV stuff. Starting from understanding coverage of existing EV chargers.
 
 \subsection{Understanding EV Charger Use by Data}
 
@@ -96,83 +74,79 @@ To create the agents schedule, day intentions need to be provided to the model. 
 
 Finaly, moving to use of Matsim for ev scenarios. \sidecite{novoselAgentBasedModelling2015} studies the impact of EVs on the electric id and electricty production in Croatia. By having a simmulation of power production network for the whole country as well. They first have a simmulation regarding the current state and how that impacts the electrical grid. This sets the baseline and also allows to correctly calibrate the model. Then they increase the ev adoption and see what is the hourly energy consumption of EVs and their impact on the grid.
 
-\todo{Talk about arup}
-
 \textbf{Stochastic models} provide a way for modeling charging behavior of electric vehicles by capturing randomness and uncertainty in travel patterns. They work with more simplified representation fo reality compared traffic models\sidenote{Of course trafic models have large part of stochasticity inside themselves}. These models typically employ probability distributions to characterize variables such as departure times, travel distances, parking durations, and charging decisions. By sampling from these distributions using techniques like Monte Carlo simulation, they generate synthetic power demand profiles.
 
 \sidecite{bradyModellingChargingProfiles2016} presents an example of stochastic modeling applied to EV charging behavior. Their approach uses a non-parametric copula function to model the dependence structure between six variables: departure time, number of journeys, and total distance traveled across two consecutive days. For this they utilize real-world GPS data collected from electric vehicles. Their model simulates complete journey schedules for individual vehicles and implements a probabilistic charging decision model at each destination, conditioned on the state of charge, parking time, and journey number. The approach captures the variability in charging behavior by incorporating factors such as battery characteristics and probabilistic charging point availability.
 
-Paper: \sidecite{ul-haqProbabilisticModelingElectric2018}
-\todo{probably skip, the paper is too hard}
-\begin{itemize}
-    \item tests policy changes
-    \item estimate ev charging pattern based on residents activity patterns
-    \item utilizes markov chain to estimate next trip departure time and travel distance
-    \item does not have charging data, so from simmulation of a day it guesses how much the ev needs to be charged
-    \item graphical model with good diagram/description
-\end{itemize}
+\sidecite{ul-haqProbabilisticModelingElectric2018} presents a probabilistic model for EV charging patterns in residential networks. The authors employ a stochastic approach using Markov chains to model transitions between driving, parked, and charging states. Their model accounts for various factors such as vehicle type, battery capacity, state of charge, driving habits, and charging preferences. By simulating daily activity patterns across different seasons and day types, they estimate charging needs for various EV penetration levels (34\%, 50\%, 65\%). Results show distinct charging patterns between weekdays and weekends, with weekend peaks occurring later in evenings. This estimation of charging load patterns provides valuable insights for distribution network planning and management.
 
 
 
-Paper: \sidecite{powellScalableProbabilisticEstimates2022}
-\begin{itemize}
-    \item groups drivers hiearrchicaly by charging behaviour
-    \item utilization of actual charging data, charging sessions data. In the session, driver id is available. So drivers charging behaviour can be observed.
-    \item utilize monte carlo simulation. Sample from learnt prob distributions.
-    \item validated against real data
-    \item $P(s,z,G) = P(s|z,G)\;P(z|G)\;P(G)$
-\end{itemize}
+\begin{marginfigure}
+    \includegraphics{powell_graphical_model.png}
+    \caption{Graphical model of modelling EV driver charging behaviour \cite{powellChargingInfrastructureAccess2022}}
+    \label{fig:powell_graphic_model}
+\end{marginfigure}
+
+\sidecite{powellScalableProbabilisticEstimates2022} utilizes graphical model. It breaks down the problem into modelling several probability distributions. They posessed charging sessions data with anonymized car ids. With the car ids they reconstructed drivers charging behaviour. They constructed vector encoding the drivers charging history and then aplied hierachcical clustering to group drivers into groups based on their behavior. They separated the chargers into 6 segments based on the charging power and its location (single family house, multi unit dwelling, workplace, fast charger). Then modelled the groups probability distribution of charging at the segments (see the graphical model at Figure \ref{fig:powell_graphic_model}). Then by sampling from the distribution they were able to reconstruct the power demand profile. And importanlty, see the effect by changing the amount of drivers in the identified driver groups. Being beneificial to policy makers.
 
 
-\begin{itemize}
-    \item \sidecite{ul-haqProbabilisticModelingElectric2018}
-    \item \sidecite{zhangChargingDemandPrediction2023}
-    \item \sidecite{zhangUrbanChargingLoad2024}
-\end{itemize}
+% \begin{itemize}
+%     \item \sidecite{zhangChargingDemandPrediction2023}
+%     \item \sidecite{zhangUrbanChargingLoad2024}
+% \end{itemize}
 
 
-\section{Forecasting}
-\todo{mention difference forecasting vs modelling}
+% \section{Forecasting}
+% \todo{mention difference forecasting vs modelling}
 
-\textit{ML for predictions, not explainable. Just learning on data}
+% \textit{ML for predictions, not explainable. Just learning on data}
 
-\todo[inline]{This section contains only placeholder text and a todo note. It needs to be fully developed with a comprehensive review of forecasting approaches in EV charging demand literature, including both statistical forecasting methods and machine learning approaches. Include a discussion of the trade-offs between model explainability and predictive performance.}
+% \todo[inline]{This section contains only placeholder text and a todo note. It needs to be fully developed with a comprehensive review of forecasting approaches in EV charging demand literature, including both statistical forecasting methods and machine learning approaches. Include a discussion of the trade-offs between model explainability and predictive performance.}
 
-\section{Infrastructure Planning}
+% \section{Infrastructure Planning}
 
-\textit{Charger placement, optimization problem how to cover certain areas. ILP and others used}
+% \textit{Charger placement, optimization problem how to cover certain areas. ILP and others used}
 
-\todo[inline]{This section also contains only placeholder text. Develop a comprehensive review of infrastructure planning approaches, including optimization methods, coverage models, and decision support systems. Discuss how these approaches relate to your research on charging demand prediction.}
+% \todo[inline]{This section also contains only placeholder text. Develop a comprehensive review of infrastructure planning approaches, including optimization methods, coverage models, and decision support systems. Discuss how these approaches relate to your research on charging demand prediction.}
 
 
-\section{Czechia and Prague Relevant Research}
+\section{Relevant Research for Czechia}
 
-\textit{No research paper has been found with theme of EVs and Czechia/Prague. So only relevant stuff is gonna be mentioned}
+\sidecite{pekarekModelChargingService2017} introduces a standalone model for electric vehicle charging demand based on large-scale travel survey data from the Czech Republic. The model serves as a comprehensive input for subsequent charging infrastructure optimization problems. It develops a graph-based representation of the road network where traffic data is transformed from edge-defined to vertex-defined format. This mathematical approach allows for the introduction of a point-defined (vertex-defined) charging demand model where each road intersection (vertex) has an associated demand value.
 
-\todo[inline]{This section needs to be developed beyond placeholder text. Even if no direct research on EV charging in Prague exists, you should discuss relevant research on urban mobility in Prague, transportation planning in Czech cities, or other related topics that provide context for your work. The citations listed need to be properly discussed, not just listed.}
+The model utilizes real traffic survey data to determine the spatial distribution of charging demand, calculating how demand at specific points is influenced by traffic patterns in surrounding areas. This is accomplished through a distance diminishing function that propagates demand through the network while simulating driver behavior. It applies this model to the entire Czech Republic road network (comprising over 30,000 road segments) and identifies several limitations, particularly related to data availability in municipal areas and potential calculation inaccuracies in regions with high-density road networks.
 
-\sidecite{pekarekModelChargingService2017}
-\sidecite{elomiyaAdvancedSpatialDecision2024}
-\sidecite{uglickichPoissonbasedFrameworkPredicting2025}
+\sidecite{neumannOptimalniRozmisteniNabijecich2021} focuses on optimization of charger placement in Czechia but on a private land.
 
-\section{Data sources and transformations}
-estimate population
+\sidecite{elomiyaAdvancedSpatialDecision2024} focuses on detemrining the best placement of hydrgoen refill station. By using GIS multi-criteria decision making.  By taking into account criteria such as: proximity to junctions, flood prone areas, flat terrain, safety distance from selected area types and high population area. They did not posess data about the existing hydrogen
 
-Predicts density of each building per $100m^2$ living area. With $R^2 = 94\%$.
-\sidecite{shangEstimatingBuildingscalePopulation2021}
+% \section{Data sources and transformations}
+% estimate population
+
+% Predicts density of each building per $100m^2$ living area. With $R^2 = 94\%$.
+% \sidecite{shangEstimatingBuildingscalePopulation2021}
 
 \section{Discussion}
 
-\todo[inline]{This discussion section needs significant improvement. It should synthesize the findings from the literature review, identify research gaps, and clearly position your work within the existing literature. The current text is informal and lacks proper structure.}
+The literature review reveals several distinct approaches to modeling and predicting EV charging demand, each with its own strengths and limitations.
 
-From observed papers regarding simulation to obtain some estimate of charging demand. Either, in absence of data, expert knowledge is utilized to create simmulations. Which lean more on engineering complexity. Due to need to simmulate some percent of city/country population. But they might not always be feasible to develop as well as calibrating. Which is to ensure the simulation matches real world. But then they have large utility and flexibilty. For example examine policy changes.
+Simulation-based approaches, particularly traffic models and agent-based models like MATSim, offer high flexibility and the ability to model complex interactions between vehicles, infrastructure, and human behavior. These models are valuable in data-scarce environments where empirical charging data is limited or non-existent. The work by \cite{novoselAgentBasedModelling2015} demonstrates how such simulations can be extended beyond charging demand prediction to assess impacts on electrical grids. However, these approaches require significant computational resources, expert knowledge for calibration, and extensive input data about road networks, population characteristics, and travel patterns.
 
-When data is available, turn to more data based methods is more common. Instead of microscopic simulations. Stochastic properties of people are obtained from the data or estimated to match the data.
+In contrast, stochastic models like those presented by \cite{bradyModellingChargingProfiles2016} and \cite{ul-haqProbabilisticModelingElectric2018} offer a more data-driven approach while still capturing the inherent variability in charging behavior. These models typically employ probability distributions to characterize key variables such as departure times, travel distances, and charging decisions. The graphical model approach by \cite{powellScalableProbabilisticEstimates2022} is particularly noteworthy for its ability to identify distinct driver groups and model their charging behaviors separately, enabling more nuanced policy analysis.
 
-\section{Research gaps}
+The Czech-specific research by \cite{pekarekModelChargingService2017} provides valuable insights into modeling charging demand in the Czech Republic using a graph-based representation of the road network. However, this approach focuses on the national level and does not address the unique urban characteristics of Prague.
 
-\textit{Mention how the relevant research is helpful for us. Also how noone has studied Prague and that it has different data landscape. And so we have to do a new approach.}
+Several patterns emerge from this literature review:
 
-\todo[inline]{This section contains only placeholder text. It should be fully developed to clearly articulate the specific research gaps your work addresses. Explain how your approach differs from existing methods and why it's necessary given the unique context of Prague. This section is crucial for establishing the novelty and contribution of your research.}
+\begin{enumerate}
+    \item As data availability increases, research tends to shift from simulation-based approaches toward more data-driven statistical and machine learning methods. This progression reflects the natural evolution of research in emerging domains, where initial exploratory models based on expert knowledge gradually give way to empirical models as more data becomes available.
 
-\todo[inline]{Overall, this entire chapter needs substantial development. Many sections contain only placeholder text or brief notes. A thorough literature review is essential for positioning your research within the existing body of knowledge and establishing its contribution. Each section should be expanded with proper academic writing, comprehensive analysis of relevant papers, and clear connections to your research objectives.}
+    \item Stochastic models that capture the probabilistic nature of human decision-making processes have proven effective in modeling charging behavior. These models can represent the inherent uncertainty in factors such as arrival times, charging durations, and energy consumption patterns.
+
+    \item The spatial context of charging stations significantly influences their usage patterns, with factors such as proximity to workplaces, commercial areas, and transportation hubs playing important roles in determining charging demand.
+
+    \item Temporal patterns in charging behavior exhibit distinct variations across different days of the week and seasons, necessitating models that can capture these cyclical patterns.
+\end{enumerate}
+
+The methodological approaches in the literature also reveal a clear trade-off between model complexity and data requirements. Simulation-based approaches like MATSim require extensive configuration and calibration but can operate with limited charging data, making them suitable for early-stage planning when empirical data is scarce. Conversely, data-driven approaches like those employed by \cite{powellScalableProbabilisticEstimates2022} and \cite{hechtGlobalElectricVehicle2024} require substantial historical charging data but can potentially deliver more accurate predictions with less configuration effort.
